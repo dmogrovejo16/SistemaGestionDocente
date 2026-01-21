@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

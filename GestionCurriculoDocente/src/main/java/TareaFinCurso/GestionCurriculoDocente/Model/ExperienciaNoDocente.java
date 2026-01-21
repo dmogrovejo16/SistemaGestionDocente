@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Model;
 
 public class ExperienciaNoDocente extends Experiencia {
 	 String funcion, fechaIni,fechaFin; //Atriutos que tiene una experiencia no docente

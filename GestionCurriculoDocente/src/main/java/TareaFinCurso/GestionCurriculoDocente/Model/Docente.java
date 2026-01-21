@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Model;
 
 import java.util.ArrayList;
 

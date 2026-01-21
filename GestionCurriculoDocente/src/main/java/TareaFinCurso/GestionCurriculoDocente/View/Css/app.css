@@ -20,7 +20,7 @@
 
 
 #vbox-principal {
-	-fx-background-image: url("resumen-moderno-diseno-degradado-fondo-onda-azul_343694-2191.jpg");
+	-fx-background-image: url("../Images/resumen-moderno-diseno-degradado-fondo-onda-azul_343694-2191.jpg");
     -fx-padding: 20;
     -fx-spacing: 15;
     -fx-background-size: cover;
@@ -36,7 +36,7 @@
 
 
 #imagen{
-	-fx-background-image: url("cv.png");
+	-fx-background-image: url("../Images/cv.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: cover;

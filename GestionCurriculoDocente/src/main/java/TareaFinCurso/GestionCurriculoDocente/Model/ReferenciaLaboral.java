@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Model;
 
 public class ReferenciaLaboral extends Experiencia{
 	 String jefeInmediato, telefonoJefe;

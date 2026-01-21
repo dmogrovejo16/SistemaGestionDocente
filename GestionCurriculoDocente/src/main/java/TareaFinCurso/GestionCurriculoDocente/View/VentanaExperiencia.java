@@ -1,8 +1,13 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.View;
 
 import java.util.ArrayList;
 
-import TareaFinCurso.GestionCurriculoDocente.VentanaRegistrar.TituloForm;
+import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Model.Experiencia;
+import TareaFinCurso.GestionCurriculoDocente.Model.ExperienciaDocente;
+import TareaFinCurso.GestionCurriculoDocente.Model.ExperienciaNoDocente;
+import TareaFinCurso.GestionCurriculoDocente.Model.ReferenciaLaboral;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaRegistrar.TituloForm;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -140,7 +145,7 @@ this.app=app;
 	        Scene scene = new Scene(contenedorP,  1530, 1080);
 	        stage.setMaximized(true);
 	        scene.getStylesheets().add(
-	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css")
+	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
 	        return  scene;
@@ -258,7 +263,7 @@ this.app=app;
 	        Scene scene = new Scene(contenedorP,  1530, 1080);
 
 	        scene.getStylesheets().add(
-	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css")
+	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
 	        return  scene;
@@ -373,7 +378,7 @@ this.app=app;
 	        Scene scene = new Scene(contenedorP,  1530, 1080);
 
 	        scene.getStylesheets().add(
-	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css")
+	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
 	        return  scene;

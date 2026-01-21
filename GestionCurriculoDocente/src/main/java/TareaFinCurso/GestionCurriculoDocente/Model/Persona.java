@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Model;
 
 public class Persona {
 	String nombres, apellidos, fechaNac,nacionalidad, estadoCivil, tipoSangre, ciudadNac, direccion,correo;

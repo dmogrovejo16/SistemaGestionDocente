@@ -86,7 +86,7 @@
 }
 
 #imagen{
-	-fx-background-image: url("datos.png");
+	-fx-background-image: url("../Images/datos.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: cover;

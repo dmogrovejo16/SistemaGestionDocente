@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Controller;
 
 import java.io.BufferedReader;
 import java.io.File;

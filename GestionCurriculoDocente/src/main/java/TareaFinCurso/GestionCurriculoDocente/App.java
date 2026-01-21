@@ -18,6 +18,23 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import TareaFinCurso.*;
+import TareaFinCurso.GestionCurriculoDocente.Controller.AccionEliminar;
+import TareaFinCurso.GestionCurriculoDocente.Model.Capacitacion;
+import TareaFinCurso.GestionCurriculoDocente.Model.CapacitacionImpartida;
+import TareaFinCurso.GestionCurriculoDocente.Model.CapacitacionRecibida;
+import TareaFinCurso.GestionCurriculoDocente.Model.Docente;
+import TareaFinCurso.GestionCurriculoDocente.Model.Experiencia;
+import TareaFinCurso.GestionCurriculoDocente.Model.ExperienciaDocente;
+import TareaFinCurso.GestionCurriculoDocente.Model.ExperienciaNoDocente;
+import TareaFinCurso.GestionCurriculoDocente.Model.Investigacion;
+import TareaFinCurso.GestionCurriculoDocente.Model.ProduccionAcademica;
+import TareaFinCurso.GestionCurriculoDocente.Model.Publicacion;
+import TareaFinCurso.GestionCurriculoDocente.Model.ReferenciaLaboral;
+import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaCapacitacion;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaExperiencia;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaProduccion;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaRegistrar;
 import javafx.stage.Stage;
 
 
@@ -281,7 +298,7 @@ public class App extends Application {
         stage.setMaximized(true);//La escena ocupa toda la pantalla
         Scene scene = new Scene(root); // Agregamos el contenedor con las datos a la escena
         scene.getStylesheets().add(//Le asignamos una hoja de estilos a esta escena para darle dise!no
-                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app.css")
+                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app.css")
                         .toExternalForm()
             );
         stage.setMaximized(true);

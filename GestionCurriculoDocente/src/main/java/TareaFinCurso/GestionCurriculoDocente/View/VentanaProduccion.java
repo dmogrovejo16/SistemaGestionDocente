@@ -1,7 +1,17 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.View;
 
 import java.util.ArrayList;
-import TareaFinCurso.GestionCurriculoDocente.VentanaCapacitacion.CapacitacionImpartidaForm;
+
+import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Model.Capacitacion;
+import TareaFinCurso.GestionCurriculoDocente.Model.Docente;
+import TareaFinCurso.GestionCurriculoDocente.Model.Experiencia;
+import TareaFinCurso.GestionCurriculoDocente.Model.Investigacion;
+import TareaFinCurso.GestionCurriculoDocente.Model.Persona;
+import TareaFinCurso.GestionCurriculoDocente.Model.ProduccionAcademica;
+import TareaFinCurso.GestionCurriculoDocente.Model.Publicacion;
+import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaCapacitacion.CapacitacionImpartidaForm;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -136,7 +146,7 @@ this.app=app;
 	        Scene scene = new Scene(contenedorP,  1530, 1080);
 	        stage.setMaximized(true);
 	        scene.getStylesheets().add(
-	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css")
+	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
 	        return  scene;
@@ -274,7 +284,7 @@ this.app=app;
 	        Scene scene = new Scene(contenedorP,  1530, 1080);
 	        stage.setMaximized(true);
 	        scene.getStylesheets().add(
-	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css")
+	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
 	        return  scene;

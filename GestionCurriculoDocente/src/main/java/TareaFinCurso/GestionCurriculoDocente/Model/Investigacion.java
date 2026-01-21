@@ -1,10 +1,10 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Model;
 
-public abstract class Experiencia {
+public class Investigacion extends ProduccionAcademica{
 String institucion;
 
-public Experiencia(String institucion) {
-	super();
+public Investigacion(String titulo, int anio, String institucion) {
+	super(titulo, anio);
 	this.institucion = institucion;
 }
 
@@ -15,7 +15,4 @@ public String getInstitucion() {
 public void setInstitucion(String institucion) {
 	this.institucion = institucion;
 }
-
-public abstract String getTipo();
-
 }

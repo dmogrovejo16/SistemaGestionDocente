@@ -1,4 +1,4 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.Model;
 
 public abstract class Capacitacion {
 String tipoEvento, institucion, fechaIni, fechaFin;

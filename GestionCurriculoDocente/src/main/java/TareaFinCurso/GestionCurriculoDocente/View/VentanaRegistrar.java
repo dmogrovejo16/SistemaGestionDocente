@@ -1,9 +1,15 @@
-package TareaFinCurso.GestionCurriculoDocente;
+package TareaFinCurso.GestionCurriculoDocente.View;
 
 
 
 import java.util.ArrayList;
 
+import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Model.Persona;
+import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
+import TareaFinCurso.GestionCurriculoDocente.Model.TituloCuartoNivel;
+import TareaFinCurso.GestionCurriculoDocente.Model.TituloSegundoNivel;
+import TareaFinCurso.GestionCurriculoDocente.Model.TituloTercerNivel;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -189,7 +195,7 @@ public class VentanaRegistrar{
 	        Scene scene = new Scene(fondo, 1530, 1000); //Definimos una escena con un tamaño fijo
 	        
 	        scene.getStylesheets().add( //Añadimos hojas de estilo a la escena
-	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/app_registrar.css")
+	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar.css")
 	                        .toExternalForm()
 	            );
 	        stage.setMaximized(true);
@@ -360,7 +366,7 @@ public class VentanaRegistrar{
 		    // Se carga el CSS
 		    scene.getStylesheets().add(
 		            getClass().getResource(
-		                    "/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css"
+		                    "/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css"
 		            ).toExternalForm()
 		    );
 
@@ -531,7 +537,7 @@ public class VentanaRegistrar{
 		    // Se carga el archivo CSS
 		    scene.getStylesheets().add(
 		            getClass().getResource(
-		                    "/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css"
+		                    "/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css"
 		            ).toExternalForm()
 		    );
 
@@ -718,7 +724,7 @@ public class VentanaRegistrar{
 		    // Se carga la hoja de estilos CSS
 		    scene.getStylesheets().add(
 		            getClass().getResource(
-		                    "/TareaFinCurso/GestionCurriculoDocente/app_registrar2.css"
+		                    "/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css"
 		            ).toExternalForm()
 		    );
 
