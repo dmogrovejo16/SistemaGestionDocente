@@ -1,0 +1,125 @@
+
+#vbox-btn-volver{
+
+	-fx-font-family:"Segoe UI";
+	-fx-margin-left: 100px;
+	-fx-max-height:50;
+	-fx-max-width:150;
+-fx-background-color: transparent;
+}
+
+
+.button{
+	-fx-font:  16px "Segoe UI";
+	-fx-background-radius:20;
+	 -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-size:20px;
+}
+
+
+
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+-f-text-fill:white;
+    -fx-padding: 4 8 4 8;
+}
+
+.text-field{
+	 -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
+
+    -fx-font-size: 14px;
+    -fx-padding: 8 12 8 12;
+}
+
+.label{
+	-fx-text-fill:black;
+	-fx-font-family:"Segoe UI";
+}
+
+#vbox-btn-siguiente{
+
+	-fx-font-family:"Segoe UI";
+	-fx-margin-left: 100px;
+	-fx-max-height:50;
+-fx-background-color: transparent;
+}
+
+#fondo {
+    -fx-background-color: linear-gradient(
+        to right,
+        #4a7be6,
+        #1b1f9c
+    );
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+#inner{
+	 -fx-background-color: linear-gradient(
+        to bottom right,
+        #ffffff,
+        #eef3ff
+    );
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+
+}
+
+#back-inner{
+	
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+    -fx-background-color:transparent;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+
+}
+
+
+.button:hover {
+    -fx-border-color: #cfd8ff;
+}
+
+#btn-volver2{
+	-fx-background-radius:10;
+	-fx-font-size:15;
+	-fx-background-color: transparent;
+	
+}
+
+#btn-siguiente2{
+	-fx-background-radius:10;
+	-fx-font-size:15;
+	-fx-background-color: transparent;
+	
+}
+
+.text-field{
+-fx-max-width:300;	
+-fx-padding:10;
+}
+

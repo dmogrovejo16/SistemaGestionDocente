@@ -1,0 +1,103 @@
+
+#vbox-btn-volver{
+
+	-fx-font-family:"Segoe UI";
+	-fx-margin-left: 100px;
+	-fx-max-height:50;
+	-fx-max-width:150;
+-fx-background-color: transparent;
+}
+
+
+.button{
+	-fx-font:  16px "Segoe UI";
+	-fx-background-radius:20;
+	 -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-size:20px;
+}
+
+
+
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+-f-text-fill:white;
+    -fx-padding: 4 8 4 8;
+}
+
+.text-field{
+	 -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
+
+    -fx-font-size: 14px;
+    -fx-padding: 8 12 8 12;
+}
+
+.label{
+	-fx-text-fill:white;
+	-fx-font-family:"Segoe UI";
+}
+
+#vbox-btn-siguiente{
+
+	-fx-font-family:"Segoe UI";
+	-fx-margin-left: 100px;
+	-fx-max-height:50;
+-fx-background-color: transparent;
+}
+
+#fondo {
+    -fx-background-color: linear-gradient(
+        to right,
+        #4a7be6,
+        #1b1f9c
+    );
+}
+#btn-volver{
+	-fx-background-radius:10;
+	-fx-font-size:15;
+	-fx-background-color: transparent;
+	
+}
+
+#btn-siguiente{
+	-fx-background-radius:10;
+	-fx-font-size:15;
+	-fx-background-color: transparent;
+	
+}
+
+.text-field{
+-fx-max-width:300;	
+-fx-padding:10;
+}
+
+#imagen{
+	-fx-background-image: url("datos.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
+
+    -fx-min-width: 500;
+    -fx-min-height: 500;
+}
+
+#containerH{
+	-fx-background-color:transparent;
+	 -fx-max-width:1500;
+	 -fx-max-height:400;
+}
+
