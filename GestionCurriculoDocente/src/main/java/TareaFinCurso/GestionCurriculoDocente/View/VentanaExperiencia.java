@@ -148,7 +148,7 @@ this.app=app;
 		            stage.setScene(EscenaRegistroExperienciaNoDocente(stage, app));
 	        	});
 	        
-	        Scene scene = new Scene(contenedorP,  1530, 1080);
+	        Scene scene = new Scene(contenedorP,  1530, 780);
 	        stage.setMaximized(true);
 	        scene.getStylesheets().add(
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
@@ -271,7 +271,7 @@ this.app=app;
 		            stage.setScene(EscenaRegistroReferenciasLaborales(stage, app));
 	        	});
 	        
-	        Scene scene = new Scene(contenedorP,  1530, 1080);
+	        Scene scene = new Scene(contenedorP,  1530, 780);
 
 	        scene.getStylesheets().add(
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
@@ -393,7 +393,7 @@ this.app=app;
 		            stage.setScene(app.getVentanaCapacitacion().EscenaRegistroCapacitacionRecibida(stage, app));
 	        	});
 	        
-	        Scene scene = new Scene(contenedorP,  1530, 1080);
+	        Scene scene = new Scene(contenedorP,  1530, 780);
 
 	        scene.getStylesheets().add(
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")

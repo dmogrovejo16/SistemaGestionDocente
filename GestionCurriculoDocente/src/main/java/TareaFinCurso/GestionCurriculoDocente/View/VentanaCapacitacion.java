@@ -151,7 +151,7 @@ f.institucion.getText(),
 		            stage.setScene(app.getVentanaCapacitacion().EscenaRegistroCapacitacionImpartida(stage, app));
 	        	});
 	        
-	        Scene scene = new Scene(contenedorP,  1530, 1080);
+	        Scene scene = new Scene(contenedorP,  1530, 780);
 
 	        scene.getStylesheets().add(
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
@@ -277,7 +277,7 @@ f.institucion.getText(),
 		            stage.setScene(app.getVentanaProduccion().EscenaRegistroInvestigaciones(stage, app));
 	        	});
 	        
-	        Scene scene = new Scene(contenedorP,  1530, 1080);
+	        Scene scene = new Scene(contenedorP,  1530, 780);
 	        stage.setMaximized(true);
 	        scene.getStylesheets().add(
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
