@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -112,10 +113,15 @@ this.app=app;
 	        }
 	        
 	        ScrollPane scroll = new ScrollPane();
-	        scroll.setContent(vbox2);
-	        scroll.setFitToWidth(true);
-	        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-	        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		    StackPane stackPane = new StackPane();
+		    stackPane.setId("cont-inner");
+		    stackPane.getChildren().add(vbox2);
+		    stackPane.setAlignment(vbox2, Pos.CENTER);
+		    scroll.setContent(stackPane);
+		    scroll.setFitToWidth(true);
+		    scroll.setPrefWidth(500);
+		    scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+		    scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 	        contenedorP.getChildren().addAll(vbox1,scroll, vbox4);
 	        
 	        
@@ -237,10 +243,15 @@ this.app=app;
 	        }
 	        
 	        ScrollPane scroll = new ScrollPane();
-	        scroll.setContent(vbox2);
-	        scroll.setFitToWidth(true);
-	        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-	        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		    StackPane stackPane = new StackPane();
+		    stackPane.setId("cont-inner");
+		    stackPane.getChildren().add(vbox2);
+		    stackPane.setAlignment(vbox2, Pos.CENTER);
+		    scroll.setContent(stackPane);
+		    scroll.setFitToWidth(true);
+		    scroll.setPrefWidth(500);
+		    scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+		    scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 	        contenedorP.getChildren().addAll(vbox1,scroll, vbox4);
 	        
 	        

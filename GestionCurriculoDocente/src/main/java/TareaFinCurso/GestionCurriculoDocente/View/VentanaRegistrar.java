@@ -192,7 +192,7 @@ public class VentanaRegistrar{
 
 	        fondo.getChildren().add(contenido);
 
-	        Scene scene = new Scene(fondo, 1530, 1000); //Definimos una escena con un tamaño fijo
+	        Scene scene = new Scene(fondo, 1530, 800); //Definimos una escena con un tamaño fijo
 	        
 	        scene.getStylesheets().add( //Añadimos hojas de estilo a la escena
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar.css")
@@ -251,7 +251,6 @@ public class VentanaRegistrar{
 
 		    // VBox donde se agregan los formularios
 		    VBox vbox2 = new VBox(10);
-		    vbox2.setId("vbox-inputs");
 		    vbox2.setAlignment(Pos.CENTER);
 		    vbox2.setId("inner");
 
@@ -319,8 +318,13 @@ public class VentanaRegistrar{
 
 		    // ScrollPane para permitir desplazamiento vertical
 		    ScrollPane scroll = new ScrollPane();
-		    scroll.setContent(vbox2);
+		    StackPane stackPane = new StackPane();
+		    stackPane.setId("cont-inner");
+		    stackPane.getChildren().add(vbox2);
+		    stackPane.setAlignment(vbox2, Pos.CENTER);
+		    scroll.setContent(stackPane);
 		    scroll.setFitToWidth(true);
+		    scroll.setPrefWidth(500);
 		    scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		    scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -360,7 +364,7 @@ public class VentanaRegistrar{
 		    });
 
 		    // Se crea la escena
-		    Scene scene = new Scene(contenedorP, 1530, 1000);
+		    Scene scene = new Scene(contenedorP, 1530, 780);
 		    stage.setMaximized(true);
 
 		    // Se carga el CSS
@@ -491,8 +495,13 @@ public class VentanaRegistrar{
 
 		    // ScrollPane para permitir desplazamiento vertical
 		    ScrollPane scroll = new ScrollPane();
-		    scroll.setContent(vbox2);
+		    StackPane stackPane = new StackPane();
+		    stackPane.setId("cont-inner");
+		    stackPane.getChildren().add(vbox2);
+		    stackPane.setAlignment(vbox2, Pos.CENTER);
+		    scroll.setContent(stackPane);
 		    scroll.setFitToWidth(true);
+		    scroll.setPrefWidth(500);
 		    scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		    scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -532,7 +541,7 @@ public class VentanaRegistrar{
 		    });
 
 		    // Se crea la escena
-		    Scene scene = new Scene(contenedorP, 1530, 1000);
+		    Scene scene = new Scene(contenedorP, 1530, 780);
 
 		    // Se carga el archivo CSS
 		    scene.getStylesheets().add(
@@ -667,15 +676,23 @@ public class VentanaRegistrar{
 
 		        // Se agrega el formulario al contenedor principal
 		        vbox2.getChildren().add(vbox);
+		        
 		    }
 
 		    // ScrollPane para permitir desplazamiento vertical
 		    ScrollPane scroll = new ScrollPane();
-		    scroll.setContent(vbox2);
+		    StackPane stackPane = new StackPane();
+		    stackPane.setId("cont-inner");
+		    stackPane.getChildren().add(vbox2);
+		    stackPane.setAlignment(vbox2, Pos.CENTER);
+		    scroll.setContent(stackPane);
 		    scroll.setFitToWidth(true);
+		    scroll.setPrefWidth(500);
 		    scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		    scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
+		    
+		    
 		    // Se arma la estructura principal de la escena
 		    contenedorP.getChildren().addAll(vbox1, scroll, vbox4);
 		    contenedorP.setFillWidth(true);
@@ -719,7 +736,7 @@ public class VentanaRegistrar{
 		    });
 
 		    // Se crea la escena
-		    Scene scene = new Scene(contenedorP, 1530, 1000);
+		    Scene scene = new Scene(contenedorP, 1530, 780);
 
 		    // Se carga la hoja de estilos CSS
 		    scene.getStylesheets().add(
