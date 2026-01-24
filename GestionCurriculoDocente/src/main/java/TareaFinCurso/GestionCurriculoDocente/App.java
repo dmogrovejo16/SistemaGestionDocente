@@ -4,18 +4,24 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import TareaFinCurso.*;
 import TareaFinCurso.GestionCurriculoDocente.Controller.AccionEliminar;
@@ -31,6 +37,7 @@ import TareaFinCurso.GestionCurriculoDocente.Model.ProduccionAcademica;
 import TareaFinCurso.GestionCurriculoDocente.Model.Publicacion;
 import TareaFinCurso.GestionCurriculoDocente.Model.ReferenciaLaboral;
 import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaActualizar;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaCapacitacion;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaExperiencia;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaProduccion;
@@ -47,7 +54,7 @@ public class App extends Application {
 	   private VentanaExperiencia ventanaExperiencia;
 	   private VentanaCapacitacion ventanaCapacitacion;
 	   private VentanaProduccion ventanaProduccion;
-	   
+	   String rutaArchivo = "C:\\Users\\mathi\\git\\SistemaGestionDocente\\GestionCurriculoDocente\\docentes.txt";
 	   //Getters y setter para las instancias, poder llamarlas de cualquier clase
 	   public VentanaRegistrar getVentanaRegistrar() {
 	        return ventanaRegistrar;
@@ -77,7 +84,8 @@ public class App extends Application {
         ventanaExperiencia = new VentanaExperiencia();
         ventanaRegistrar = new VentanaRegistrar();
         //Llamamos al metodo para importar la lista de docentes a un array local
-        cargarDocentes("C:\\Users\\mathi\\Documents\\docentes.txt");
+        System.out.println(new File(".").getAbsolutePath());
+        cargarDocentes(rutaArchivo);
         //Inicializamos el escenario
         stage.setScene(EscenaPrincipal(stage));
         stage.setMaximized(true);
@@ -87,21 +95,27 @@ public class App extends Application {
   ArrayList<Docente> docentes = new ArrayList<>();
 
   
-  public void escribirDocente(Docente d) { //Metodo para añadir un nuevo docente al archivo txt
-	    try (PrintWriter pw = new PrintWriter( //Try - catch para evitar cierres
-	            new FileWriter("C:\\Users\\mathi\\Documents\\docentes.txt", true))) {
+  public void escribirDocente(Docente d) {
 
-	        pw.println(d.toString());//Llamamos al metodo toString de la clase docente que tiene el formato de guardado de datos
 
-	    } catch (IOException e) { //Agarramos la excepcion y mostramos la localizacion
-	        e.printStackTrace();
-	    }
-	}
+	  File archivo = new File("docentes.txt");
+
+
+	  try (PrintWriter pw = new PrintWriter(
+	  new FileWriter(archivo, true))) {
+
+
+	  pw.println(d.toString());
+
+
+	  } catch (IOException e) {
+	  e.printStackTrace();
+	  }
+	  }
  
 
   public  ArrayList<Docente> cargarDocentes(String ruta) { //Metodo para importar los docentes al array local
-         
-
+	  
           try (BufferedReader br = new BufferedReader(new FileReader(ruta))) { //Inicializamos una clase para leer el texto en el archivo
 
              //Declaramos variables, objetos y ArrayLists
@@ -291,6 +305,44 @@ public class App extends Application {
             
         });
         
+        
+        actB.setOnAction(e -> {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Buscar Docente");
+            dialog.setHeaderText("Módulo de Actualización");
+            dialog.setContentText("Por favor, ingrese el número de Cédula del Docente:");
+
+            Optional<String> result = dialog.showAndWait();
+            
+            if (result.isPresent()){
+                String cedulaBuscada = result.get();
+                Docente docenteEncontrado = null;
+                System.out.println(docentes.get(0));
+                for (Docente d : docentes) {
+                	System.out.println(d.getCedula());
+                	System.out.println(cedulaBuscada);
+                    if (String.valueOf(d.getCedula()).equals(cedulaBuscada)) {
+                    	
+                        docenteEncontrado = d;
+                        break;
+                    }
+                }
+
+                if (docenteEncontrado != null) {
+                    VentanaActualizar ventana = new VentanaActualizar();
+                    Scene escenaEdicion = ventana.EscenaEdicion(stage, this, docenteEncontrado);
+                    stage.setScene(escenaEdicion);
+                    stage.setMaximized(true);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("No se encontró ningún docente con la cédula: " + cedulaBuscada);
+                    alert.showAndWait();
+                }
+            }
+        });
+        
         AccionEliminar Borrar = new AccionEliminar(); //Instanciamos la calse AccionEliminar para acceder a sus metodos
         Borrar.AccionEliminar(delB);//Le pasamos el boton con el que se realiza la accion de eliminar
 
@@ -306,7 +358,18 @@ public class App extends Application {
     }
     
   
-    
+    public void actualizarTodaLaBaseDeDatos() {
+        System.out.println("Iniciando actualización de archivo..."); 
+        try (PrintWriter pw = new PrintWriter(new FileWriter(rutaArchivo, false))) {
+            for (Docente d : docentes) {
+                pw.print(d.toString()); 
+            }
+            System.out.println("Archivo actualizado correctamente.");  
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al guardar los cambios: " + e.getMessage());
+        }
+    } 
     public static void main(String[] args) {
         launch();
     }

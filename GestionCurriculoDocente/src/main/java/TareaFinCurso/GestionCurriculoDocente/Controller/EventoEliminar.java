@@ -12,7 +12,7 @@ import java.util.List;
 public class EventoEliminar {
 	
 	public Boolean EventoEliminar(String identificador) {
-		 File archivo = new File("C:\\Users\\mathi\\Documents\\docentes.txt");
+		 File archivo = new File("/GestionCurriculoDocente/src/main/java/TareaFinCurso/GestionCurriculoDocente/View/Documents/docentes.txt");
 		    List<String> resultado = new ArrayList<>();
 		    List<String> bloqueDocente = new ArrayList<>();
 
