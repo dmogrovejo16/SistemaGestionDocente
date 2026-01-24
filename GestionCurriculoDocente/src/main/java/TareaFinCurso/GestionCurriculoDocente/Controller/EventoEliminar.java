@@ -43,7 +43,7 @@ public class EventoEliminar {
 		                // Fin del docente
 		                if (linea.equals("FIN_DOCENTE")) {
 
-		                    // Si NO es el docente a eliminar, se guarda
+		                    // Si no es el docente a eliminar, se guarda
 		                    if (!eliminar) {
 		                        resultado.addAll(bloqueDocente);
 		                        resultado.add(""); // línea en blanco entre docentes
@@ -56,7 +56,7 @@ public class EventoEliminar {
 		                }
 
 		            } else {
-		                // Líneas sueltas fuera de DOCENTE (por seguridad)
+		                // Líneas sueltas fuera de Docente 
 		                resultado.add(linea);
 		            }
 		        }
@@ -66,7 +66,7 @@ public class EventoEliminar {
 		        return false;
 		    }
 
-		    // Reescribir archivo SOLO si se encontró la cédula
+		    // Reescribir archivo  si se encontró la cédula
 		    if (encontrado) {
 		        try (PrintWriter pw = new PrintWriter(new FileWriter(archivo))) {
 		            for (String l : resultado) {

@@ -40,32 +40,32 @@ public class VentanaActualizar {
         
         TabPane tabPane = new TabPane();
         
-        // 1. Datos Personales
+        // Pestaña Datos Personales
         Tab tabDatos = new Tab("Datos Personales");
         tabDatos.setClosable(false);
         tabDatos.setContent(crearFormularioDatos(docenteAEditar));
         
-        // 2. Títulos
+        // Pestaña Títulos
         Tab tabTitulos = new Tab("Títulos");
         tabTitulos.setClosable(false);
         tabTitulos.setContent(crearEditorTitulos(docenteAEditar)); 
         
-        // 3. Experiencia
+        // Pestaña Experiencia
         Tab tabExperiencia = new Tab("Experiencia");
         tabExperiencia.setClosable(false);
         tabExperiencia.setContent(crearEditorExperiencias(docenteAEditar));
 
-        // 4. Capacitaciones (NUEVA)
+        // Pestaña Capacitaciones 
         Tab tabCapacitacion = new Tab("Capacitación");
         tabCapacitacion.setClosable(false);
         tabCapacitacion.setContent(crearEditorCapacitaciones(docenteAEditar));
 
-        // 5. Producción Académica (NUEVA - Investigaciones y Publicaciones)
+        // Pestaña Producción Académica (NUEVA - Investigaciones y Publicaciones)
         Tab tabProduccion = new Tab("Producción");
         tabProduccion.setClosable(false);
         tabProduccion.setContent(crearEditorProducciones(docenteAEditar));
 
-        // AGREGAR LAS 5 PESTAÑAS
+        // Mostramos las pestañas creadas
         tabPane.getTabs().addAll(tabDatos, tabTitulos, tabExperiencia, tabCapacitacion, tabProduccion);
 
         // BOTÓN GUARDAR
@@ -86,9 +86,7 @@ public class VentanaActualizar {
         return new Scene(layoutPrincipal, 800, 600);
     }
 
-    // --------------------------------------------------------------------------------
-    // SECCIÓN 1: DATOS PERSONALES
-    // --------------------------------------------------------------------------------
+    // Metodo para editar la informacion personal del docente
     private VBox crearFormularioDatos(Docente d) {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(15));
@@ -113,9 +111,7 @@ public class VentanaActualizar {
         return vbox;
     }
 
-    // --------------------------------------------------------------------------------
-    // SECCIÓN 2: TÍTULOS
-    // --------------------------------------------------------------------------------
+    // Metodo para editar los titulos del docente
     private VBox crearEditorTitulos(Docente docente) {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(15));
@@ -165,9 +161,7 @@ public class VentanaActualizar {
         return vbox;
     }
 
-    // --------------------------------------------------------------------------------
-    // SECCIÓN 3: EXPERIENCIA
-    // --------------------------------------------------------------------------------
+    // Metodo para editar las experiencias del docente
     private VBox crearEditorExperiencias(Docente docente) {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(15));
@@ -212,7 +206,7 @@ public class VentanaActualizar {
         tablaCapacitaciones.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tablaCapacitaciones.setPrefHeight(200);
 
-        // Columna Tipo (Recibida vs Impartida)
+        // Columna Tipo -  Para que el usuaruio sepa q tipo de capacitacion va a editar
         TableColumn<Capacitacion, String> colTipo = new TableColumn<>("Tipo");
         colTipo.setCellValueFactory(cellData -> {
             Capacitacion c = cellData.getValue();
@@ -221,8 +215,7 @@ public class VentanaActualizar {
             return new SimpleStringProperty("General");
         });
 
-        // NOTA: Asegúrate que tu clase Capacitacion tenga getters para 'tematica' e 'institucion'
-        // Si se llaman diferente, cambia "tematica" por el nombre correcto del atributo en tu clase.
+//Asignamos los datos que tengamos en Docente con ayuda  de los setters y la modularizacion
         TableColumn<Capacitacion, String> colTema = new TableColumn<>("Temática");
         colTema.setCellValueFactory(new PropertyValueFactory<>("tematica")); 
         
@@ -287,7 +280,7 @@ public class VentanaActualizar {
         tablaProducciones.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tablaProducciones.setPrefHeight(200);
 
-        // Columna Tipo (Investigación vs Publicación)
+        // Llamamos a los getters de la clase Docent para diferenciar la produccion academica
         TableColumn<ProduccionAcademica, String> colTipo = new TableColumn<>("Tipo");
         colTipo.setCellValueFactory(cellData -> {
             ProduccionAcademica p = cellData.getValue();
@@ -296,7 +289,7 @@ public class VentanaActualizar {
             return new SimpleStringProperty("Otro");
         });
 
-        // Asegúrate que ProduccionAcademica tenga getTitulo()
+        // Llamamos a los getters de la clase Docente para ir mostrando los cambios
         TableColumn<ProduccionAcademica, String> colTitulo = new TableColumn<>("Título / Proyecto");
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         
@@ -344,20 +337,20 @@ public class VentanaActualizar {
  
     private void guardarCambios(Docente d, App app, Stage stage) {
         try {
-            // 1. Datos Simples
+            // Gurdamos los datos personales con los setters
             d.setNombres(txtNombres.getText());
             d.setApellidos(txtApellidos.getText());
             d.setCorreo(txtCorreo.getText());
             if(!txtCelular.getText().isEmpty()) d.setTelefonoCel(Integer.parseInt(txtCelular.getText()));
             if(!txtConvencional.getText().isEmpty()) d.setTelefonoConv(Integer.parseInt(txtConvencional.getText()));
 
-            // 2. Listas (Sincronización forzada desde las tablas visuales)
+            // Guardamos los titulos y capacitaciones q esten en las tablas
             d.setTitulos(new ArrayList<>(tablaTitulos.getItems()));
             d.setExperiencias(new ArrayList<>(tablaExp.getItems()));
             d.setCapacitaciones(new ArrayList<>(tablaCapacitaciones.getItems())); // Guardamos Capacitaciones
             d.setProducciones(new ArrayList<>(tablaProducciones.getItems()));     // Guardamos Producciones
             
-            // 3. Escribir archivo
+            // Pasamos las actualizacions al archivo
             app.actualizarTodaLaBaseDeDatos(); 
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
