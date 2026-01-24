@@ -83,6 +83,7 @@ public class VentanaActualizar {
             btnGuardar
         );
 
+        layoutPrincipal.setStyle("-fx-background-color: linear-gradient(to right,  #4a7be6, #1b1f9c);");;
         return new Scene(layoutPrincipal, 800, 600);
     }
 
@@ -194,7 +195,26 @@ public class VentanaActualizar {
             if(exp != null) datos.remove(exp);
         });
         
-        vbox.getChildren().addAll(new Label("Experiencias:"), tablaExp, btnEliminar);
+        
+        
+        TextField txtNewInst = new TextField(); txtNewInst.setPromptText("Institución");
+        TextField txtNewFunc = new TextField(); txtNewFunc.setPromptText("Funcion");
+        
+        Button btnAgregar = new Button("Agregar");
+        btnAgregar.setOnAction(e -> {
+            if(!txtNewInst.getText().isEmpty()){
+                // Ajusta los parámetros según tu constructor de Titulo
+                ExperienciaNoDocente nuevo = new ExperienciaNoDocente(txtNewInst.getText(), txtNewFunc.getText() );
+                datos.add(nuevo);
+                docente.getExperiencias().add(nuevo);
+                txtNewInst.clear();txtNewFunc.clear();
+            }
+        });
+        
+        vbox.getChildren().addAll(new Label("Experiencias:"), tablaExp, btnEliminar, new Separator(), new Label("Agregar:"), txtNewInst, txtNewFunc, btnAgregar);
+       
+        
+       
         return vbox;
     }
 

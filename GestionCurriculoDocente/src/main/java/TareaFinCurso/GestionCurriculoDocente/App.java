@@ -55,6 +55,8 @@ public class App extends Application {
 	   private VentanaCapacitacion ventanaCapacitacion;
 	   private VentanaProduccion ventanaProduccion;
 	   String rutaArchivo = "C:\\Users\\mathi\\git\\SistemaGestionDocente\\GestionCurriculoDocente\\docentes.txt";
+	 //Creamos el arrray de docentes
+	   ArrayList<Docente> docentes = new ArrayList<>();
 	   //Getters y setter para las instancias, poder llamarlas de cualquier clase
 	   public VentanaRegistrar getVentanaRegistrar() {
 	        return ventanaRegistrar;
@@ -91,8 +93,7 @@ public class App extends Application {
         stage.setMaximized(true);
         stage.show();
     }
-//Creamos el arrray de docentes
-  ArrayList<Docente> docentes = new ArrayList<>();
+
 
   
   public void escribirDocente(Docente d) {

@@ -29,6 +29,11 @@ public class ExperienciaNoDocente extends Experiencia {
 		 this.fechaFin = fechaFin;
 	 }
 
+	public ExperienciaNoDocente(String institucion, String funcion) {
+		super(institucion);
+		this.funcion = funcion;
+	}
+
 	public ExperienciaNoDocente(String institucion, String funcion, String fechaIni, String fechaFin) { //Constructor con atributos
 		super(institucion);
 		this.funcion = funcion;
