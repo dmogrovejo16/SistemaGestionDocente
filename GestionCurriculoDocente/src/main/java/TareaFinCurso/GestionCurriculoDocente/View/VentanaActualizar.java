@@ -133,6 +133,7 @@ public class VentanaActualizar {
 
         tablaTitulos.getColumns().addAll(colTitulo, colInst);
         
+        
         ObservableList<Titulo> datos = FXCollections.observableArrayList(docente.getTitulos());
         tablaTitulos.setItems(datos);
         
@@ -152,7 +153,7 @@ public class VentanaActualizar {
                 // Ajusta los parámetros según tu constructor de Titulo
                 Titulo nuevo = new Titulo(txtNewInst.getText(), txtNewTitulo.getText(), "Quito", "2024");
                 datos.add(nuevo);
-                tablaTitulos.setItems(datos);
+                docente.getTitulos().add(nuevo);
                 txtNewTitulo.clear(); txtNewInst.clear();
             }
         });
@@ -255,6 +256,7 @@ public class VentanaActualizar {
                         nueva = new CapacitacionImpartida(txtInst.getText(), txtTema.getText(), "2024", "2024", horas);
                     }
                     datos.add(nueva);
+                    docente.getCapacitaciones().add(nueva);
                     txtTema.clear(); txtInst.clear(); txtHoras.clear();
                 } catch(Exception ex) {
                     Alert err = new Alert(Alert.AlertType.ERROR);
@@ -322,6 +324,7 @@ public class VentanaActualizar {
                     nueva = new Investigacion(txtTitulo.getText(), 2024, txtDesc.getText());
                 }
                 datos.add(nueva);
+                docente.getProducciones().add(nueva);
                 txtTitulo.clear(); txtDesc.clear();
             }
         });

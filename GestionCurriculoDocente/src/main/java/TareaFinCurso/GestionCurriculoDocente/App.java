@@ -353,7 +353,6 @@ public class App extends Application {
                 getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app.css")
                         .toExternalForm()
             );
-        stage.setMaximized(true);
             return scene; //Devolvemos la escena
     }
     
