@@ -377,7 +377,7 @@ public class App extends Application {
 
         StackPane root = new StackPane(vboxP); //Creamos un contenedor apilador para nuestro elementos
         stage.setMaximized(true);//La escena ocupa toda la pantalla
-        Scene scene = new Scene(root); // Agregamos el contenedor con las datos a la escena
+        Scene scene = new Scene(root,1530, 780); // Agregamos el contenedor con las datos a la escena
         scene.getStylesheets().add(//Le asignamos una hoja de estilos a esta escena para darle dise!no
                 getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app.css")
                         .toExternalForm()

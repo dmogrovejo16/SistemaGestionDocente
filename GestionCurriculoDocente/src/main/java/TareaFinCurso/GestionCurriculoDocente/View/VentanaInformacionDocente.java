@@ -79,19 +79,19 @@ public class VentanaInformacionDocente {
 	        Button btnGuardar = new Button("Volver");
 	        btnGuardar.setStyle("-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;");
 	        btnGuardar.setOnAction(e -> {
-	            guardarCambios( app, stage);
+	        	stage.setScene(app.getVentanaDocentes().EscenaListaDocentes(stage, app));
 	        });
 
 	        VBox layoutPrincipal = new VBox(15);
 	        layoutPrincipal.setPadding(new Insets(20));
 	        layoutPrincipal.getChildren().addAll(
-	            new Label("EDITAR DOCENTE CÉDULA: " + docenteAEditar.getCedula()), 
+	           
 	            tabPane, 
 	            btnGuardar
 	        );
 
 	        layoutPrincipal.setStyle("-fx-background-color: linear-gradient(to right,  #4a7be6, #1b1f9c);");;
-	        return new Scene(layoutPrincipal, 800, 600);
+	        return new Scene(layoutPrincipal,1530, 780);
 	    }
 
 	    // Metodo para mostrar la informacion personal del docente
@@ -277,9 +277,5 @@ colTelefono, colCarrera, colEstado
 	    }
 
 	 
-	    private void guardarCambios( App app, Stage stage) {
-    
-	            stage.setScene(app.EscenaPrincipal(stage));
-	            
-	    }
+	    
 }
