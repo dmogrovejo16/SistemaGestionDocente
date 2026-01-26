@@ -39,7 +39,9 @@ import TareaFinCurso.GestionCurriculoDocente.Model.ReferenciaLaboral;
 import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaActualizar;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaCapacitacion;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaDocentes;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaExperiencia;
+import TareaFinCurso.GestionCurriculoDocente.View.VentanaInformacionDocente;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaProduccion;
 import TareaFinCurso.GestionCurriculoDocente.View.VentanaRegistrar;
 import javafx.stage.Stage;
@@ -54,6 +56,8 @@ public class App extends Application {
 	   private VentanaExperiencia ventanaExperiencia;
 	   private VentanaCapacitacion ventanaCapacitacion;
 	   private VentanaProduccion ventanaProduccion;
+	   private  VentanaInformacionDocente ventanaInformacionDocente;
+	   private VentanaDocentes ventanaDocentes;
 	   String rutaArchivo = "C:\\Users\\mathi\\git\\SistemaGestionDocente\\GestionCurriculoDocente\\docentes.txt";
 	 //Creamos el arrray de docentes
 	   ArrayList<Docente> docentes = new ArrayList<>();
@@ -77,6 +81,21 @@ public class App extends Application {
 	    public ArrayList<Docente> getDocentes() {
 	        return docentes;
 	    }
+	    public VentanaDocentes getVentanaDocentes() {
+			return ventanaDocentes;
+		}
+
+		   public void setVentanaDocentes(VentanaDocentes ventanaDocentes) {
+			   this.ventanaDocentes = ventanaDocentes;
+		   }
+		
+		   public VentanaInformacionDocente getVentanaInformacionDocente() {
+				return ventanaInformacionDocente;
+			}
+
+			   public void setVentanaInformacionDocente(VentanaInformacionDocente ventanaInformacionDocente) {
+				   this.ventanaInformacionDocente = ventanaInformacionDocente;
+			   }
 	    
     @Override
     public void start(Stage stage) {
@@ -85,6 +104,8 @@ public class App extends Application {
         ventanaCapacitacion = new VentanaCapacitacion();
         ventanaExperiencia = new VentanaExperiencia();
         ventanaRegistrar = new VentanaRegistrar();
+        ventanaDocentes = new VentanaDocentes();
+        ventanaInformacionDocente = new VentanaInformacionDocente();
         //Llamamos al metodo para importar la lista de docentes a un array local
         System.out.println(new File(".").getAbsolutePath());
         cargarDocentes(rutaArchivo);
@@ -342,6 +363,13 @@ public class App extends Application {
                     alert.showAndWait();
                 }
             }
+        });
+        
+        vizB.setOnAction(e -> {
+        	Scene escenaDocentes = ventanaDocentes.EscenaListaDocentes(stage, this);
+        	
+            stage.setScene(escenaDocentes);
+            stage.setMaximized(true);
         });
         
         AccionEliminar Borrar = new AccionEliminar(); //Instanciamos la calse AccionEliminar para acceder a sus metodos

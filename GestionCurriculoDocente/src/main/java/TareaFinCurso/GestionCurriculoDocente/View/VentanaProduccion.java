@@ -59,7 +59,6 @@ this.app=app;
 	        Button volver = new Button("Volver");
 	        volver.setId("btn-volver2");  
 	        volver.setOnAction(e -> {
-	        	VentanaCapacitacion ventanaExperiencia = new VentanaCapacitacion();
 	            stage.setScene(app.getVentanaCapacitacion(). EscenaRegistroCapacitacionImpartida(stage, app));
 	        });
 

@@ -1,0 +1,40 @@
+#btn-volver2{
+	-fx-background-radius:10;
+	-fx-font-size:15;
+	-fx-background-color: transparent;
+	
+}
+.button{
+	-fx-font:  16px "Segoe UI";
+	-fx-background-radius:20;
+	 -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-size:20px;
+}
+
+
+.button:hover {
+    -fx-border-color: #cfd8ff;
+}
+#fondo {
+    -fx-background-color: linear-gradient(
+        to right,
+        #4a7be6,
+        #1b1f9c
+    );
+}
+
+#btn-docente{
+-fx-min-width:200;
+	-fx-min-height:300;
+	-fx-background-color: #ae98f1;
+}
+#imagen {
+-fx-background-image: url("../Images/perifl.png");
+-fx-background-size: cover;
+-fx-background-position: center;
+-fx-background-repeat: no-repeat;
+}
