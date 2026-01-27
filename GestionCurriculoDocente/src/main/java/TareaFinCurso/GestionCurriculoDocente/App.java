@@ -25,6 +25,7 @@ import java.util.Optional;
 
 import TareaFinCurso.*;
 import TareaFinCurso.GestionCurriculoDocente.Controller.AccionEliminar;
+import TareaFinCurso.GestionCurriculoDocente.Controller.FileController;
 import TareaFinCurso.GestionCurriculoDocente.Model.Capacitacion;
 import TareaFinCurso.GestionCurriculoDocente.Model.CapacitacionImpartida;
 import TareaFinCurso.GestionCurriculoDocente.Model.CapacitacionRecibida;
@@ -58,8 +59,19 @@ public class App extends Application {
 	   private VentanaProduccion ventanaProduccion;
 	   private  VentanaInformacionDocente ventanaInformacionDocente;
 	   private VentanaDocentes ventanaDocentes;
-	   String rutaArchivo = "C:\\Users\\mathi\\git\\SistemaGestionDocente\\GestionCurriculoDocente\\docentes.txt";
-	 //Creamos el arrray de docentes
+	   private static String rutaArchivo = "docentes.txt";
+	   FileController fileController = new FileController();
+	 public static String getRutaArchivo() {
+		return rutaArchivo;
+	}
+
+	   public static void setRutaArchivo(String rutaArchivo) {
+		   App.rutaArchivo = rutaArchivo;
+	   }
+
+
+
+	 static //Creamos el arrray de docentes
 	   ArrayList<Docente> docentes = new ArrayList<>();
 	   //Getters y setter para las instancias, poder llamarlas de cualquier clase
 	   public VentanaRegistrar getVentanaRegistrar() {
@@ -78,7 +90,7 @@ public class App extends Application {
 	        return ventanaProduccion;
 	    }
 	    
-	    public ArrayList<Docente> getDocentes() {
+	    public static ArrayList<Docente> getDocentes() {
 	        return docentes;
 	    }
 	    public VentanaDocentes getVentanaDocentes() {
@@ -108,7 +120,7 @@ public class App extends Application {
         ventanaInformacionDocente = new VentanaInformacionDocente();
         //Llamamos al metodo para importar la lista de docentes a un array local
         System.out.println(new File(".").getAbsolutePath());
-        cargarDocentes(rutaArchivo);
+        fileController.cargarDocentes(rutaArchivo);
         //Inicializamos el escenario
         stage.setScene(EscenaPrincipal(stage));
         stage.setMaximized(true);
@@ -117,169 +129,9 @@ public class App extends Application {
 
 
   
-  public void escribirDocente(Docente d) {
-
-
-	  File archivo = new File("docentes.txt");
-
-
-	  try (PrintWriter pw = new PrintWriter(
-	  new FileWriter(archivo, true))) {
-
-
-	  pw.println(d.toString());
-
-
-	  } catch (IOException e) {
-	  e.printStackTrace();
-	  }
-	  }
  
 
-  public  ArrayList<Docente> cargarDocentes(String ruta) { //Metodo para importar los docentes al array local
-	  
-          try (BufferedReader br = new BufferedReader(new FileReader(ruta))) { //Inicializamos una clase para leer el texto en el archivo
-
-             //Declaramos variables, objetos y ArrayLists
-        	  String linea;
-              Docente docente = null;
-
-              ArrayList<Titulo> titulos = null;
-              ArrayList<Capacitacion> capacitaciones = null;
-              ArrayList<Experiencia> experiencias = null;
-              ArrayList<ProduccionAcademica> producciones = null;
-
-              while ((linea = br.readLine()) != null) { //Bucle se repite mientras la linea leida no este en blanco
-
-                  if (linea.equals("DOCENTE")) { //La linea DOCENTE indica que se empezo a escribir informacion de un docente, por lo que podemos empezar a inicializar
-                	  //variables para guardar los datos a continuacion
-                      docente = new Docente();
-                      titulos = new ArrayList<>();
-                      capacitaciones = new ArrayList<>();
-                      experiencias = new ArrayList<>();
-                      producciones = new ArrayList<>();
-                  }
-
-                  else if (linea.startsWith("NOMBRES=")) { //Cada linea de informacion empieza ocn un identificador ne mayusculas, que nos indica que variable pasar al objeto
-                      docente.setNombres(linea.split("=", 2)[1]);//Pasamos al objeto el nombre
-                  }
-                  else if (linea.startsWith("APELLIDOS=")) {
-                      docente.setApellidos(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("CEDULA=")) {
-                      docente.setCedula(Integer.parseInt(linea.split("=", 2)[1]));
-                  }
-                  else if (linea.startsWith("FECHA_NAC=")) {
-                      docente.setFechaNac(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("NACIONALIDAD=")) {
-                      docente.setNacionalidad(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("ESTADO_CIVIL=")) {
-                      docente.setEstadoCivil(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("TIPO_SANGRE=")) {
-                      docente.setTipoSangre(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("CIUDAD_NAC=")) {
-                      docente.setCiudadNac(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("DIRECCION=")) {
-                      docente.setDireccion(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("CORREO=")) {
-                      docente.setCorreo(linea.split("=", 2)[1]);
-                  }
-                  else if (linea.startsWith("TEL_CEL=")) {
-                      docente.setTelefonoCel(Integer.parseInt(linea.split("=", 2)[1]));
-                  }
-                  else if (linea.startsWith("TEL_CONV=")) {
-                      docente.setTelefonoConv(Integer.parseInt(linea.split("=", 2)[1]));
-                  }
-
-                  // ---------- TITULOS ----------
-                  else if (linea.equals("TITULOS")) {
-                      while (!(linea = br.readLine()).equals("FIN_TITULOS")) { //Bucle que se repite mientras nos encontremos en la seccion de titulos
-                          String[] d = linea.split(";");
-                          titulos.add(new Titulo(d[0], d[1], d[2], d[3]));
-                      }
-                  }
-
-                  // ---------- CAPACITACIONES ----------
-                  else if (linea.equals("CAPACITACIONES")) {
-                      while (!(linea = br.readLine()).equals("FIN_CAPACITACIONES")) {//Bucle que se repite mientras nos encontremos en la seccion de capacitacion
-                          String[] d = linea.split(";"); //Concatenamos la informacion de capacitacion con un ; de separacion
-                          Capacitacion c;
-
-                          if (d[0].equals("RECIBIDA")) {//Vemos si la informacion a continuacion corresponde a capacitacion recibidas, de lo contrario seran impartidas
-                              c = new CapacitacionRecibida(d[1], d[2], d[3], d[4],
-                                      Integer.parseInt(d[5]));
-                          } else {
-                              c = new CapacitacionImpartida(d[1], d[2], d[3], d[4],
-                                      Integer.parseInt(d[5]));
-                          }
-
-                          capacitaciones.add(c);
-                      }
-                  }
-
-                  // ---------- EXPERIENCIAS ----------
-                  else if (linea.equals("EXPERIENCIAS")) {
-                      while (!(linea = br.readLine()).equals("FIN_EXPERIENCIAS")) {//Bucle que se repite mientras nos encontremos en la seccion de experiencia
-                          String[] d = linea.split(";");//Concatenamos la informacion de capacitacion con un ; de separacion
-
-                          switch (d[0]) { //El vector d se inicialiizara en 0 siempre, permieitndonos recorrer todo el bloque de experiencias
-                              case "DOCENTE"://Vemos si la informacion a continuacion corresponde a experiencia docente
-                                  experiencias.add(new ExperienciaDocente( //Anadimos al array de experiencias lo encontrado
-                                          d[1], d[2], d[3], d[4]));
-                                  break;
-
-                              case "NO_DOCENTE"://Vemos si la informacion a continuacion corresponde a experiencia no docente
-                                  experiencias.add(new ExperienciaNoDocente(
-                                          d[1], d[2], d[3], d[4]));
-                                  break;
-
-                              case "REFERENCIA"://Vemos si la informacion a continuacion corresponde a referencias
-                                  experiencias.add(new ReferenciaLaboral(
-                                          d[1], d[2], d[3]));
-                                  break;
-                          }
-                      }
-                  }
-
-                  // ---------- PRODUCCIONES ----------
-                  else if (linea.equals("PRODUCCIONES")) {
-                      while (!(linea = br.readLine()).equals("FIN_PRODUCCIONES")) {//Bucle que se repite mientras nos encontremos en la seccion de producciones
-                          String[] d = linea.split(";");
-
-                          if (d[0].equals("PUBLICACION")) {//Vemos si la informacion a continuacion corresponde a una publicacion
-                              producciones.add(new Publicacion(
-                                      d[1], Integer.parseInt(d[2]), d[3]));
-                          } else if (d[0].equals("INVESTIGACION")) {//Vemos si la informacion a continuacion corresponde a una investigacion
-                              producciones.add(new Investigacion(
-                                      d[1], Integer.parseInt(d[2]), d[3]));
-                          }
-                      }
-                  }
-
-                  // ---------- FIN DOCENTE ----------
-                  else if (linea.equals("FIN_DOCENTE")) { //Cuando llegemos al final del bloque docente, pasamos todos lo arrays con la informacion complemnentaria
-                      docente.setTitulos(titulos);
-                      docente.setCapacitaciones(capacitaciones);
-                      docente.setExperiencias(experiencias);
-                      docente.setProducciones(producciones);
-
-                      docentes.add(docente);//Finalmente añadimos el docente al array de docentes local
-                      docente = null;//Reiniciamos el docente
-                  }
-              }
-
-          } catch (Exception e) { //Agarramos un excepcion y mostramos su localizacion
-              e.printStackTrace();
-          }
-
-          return docentes;
-  }
+  
   
 
   
@@ -328,35 +180,35 @@ public class App extends Application {
         });
         
         
-        actB.setOnAction(e -> {
+        actB.setOnAction(e -> {//Definimos la accion para el boton visualizar al ser pesionado
             TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Buscar Docente");
+            dialog.setTitle("Buscar Docente"); //Mostramos un cuadro de dialogo para ingresar informacion con titulo y contenido
             dialog.setHeaderText("Módulo de Actualización");
             dialog.setContentText("Por favor, ingrese el número de Cédula del Docente:");
 
-            Optional<String> result = dialog.showAndWait();
+            Optional<String> result = dialog.showAndWait(); //Definimos un objeto que puede o no contener informacion de tipo stirng
             
-            if (result.isPresent()){
+            if (result.isPresent()){ //Si el objeto contiene informacion, procedemos a leerlo
                 String cedulaBuscada = result.get();
                 Docente docenteEncontrado = null;
                 System.out.println(docentes.get(0));
-                for (Docente d : docentes) {
+                for (Docente d : docentes) { //Recorremos el array de los docentes
                 	System.out.println(d.getCedula());
                 	System.out.println(cedulaBuscada);
-                    if (String.valueOf(d.getCedula()).equals(cedulaBuscada)) {
+                    if (String.valueOf(d.getCedula()).equals(cedulaBuscada)) {//Hasta que la cedula coincida ocn la buscada
                     	
-                        docenteEncontrado = d;
+                        docenteEncontrado = d; //Asignamos el docente a la variable y terminamos la busqueda
                         break;
                     }
                 }
 
-                if (docenteEncontrado != null) {
-                    VentanaActualizar ventana = new VentanaActualizar();
-                    Scene escenaEdicion = ventana.EscenaEdicion(stage, this, docenteEncontrado);
+                if (docenteEncontrado != null) { //Si se termino el bucle y se encontro que ninguno coincida
+                    VentanaActualizar ventana = new VentanaActualizar(); //Nos dirijimos a la ventana par aactualizar su informacion
+                    Scene escenaEdicion = ventana.EscenaEdicion(stage, this, docenteEncontrado);//Llamamos a la escena que realiza el proceso
                     stage.setScene(escenaEdicion);
                     stage.setMaximized(true);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                } else {//Si no se encontro
+                    Alert alert = new Alert(Alert.AlertType.ERROR);//Mostramos un modal de error
                     alert.setTitle("Error");
                     alert.setHeaderText(null);
                     alert.setContentText("No se encontró ningún docente con la cédula: " + cedulaBuscada);
@@ -365,8 +217,8 @@ public class App extends Application {
             }
         });
         
-        vizB.setOnAction(e -> {
-        	Scene escenaDocentes = ventanaDocentes.EscenaListaDocentes(stage, this);
+        vizB.setOnAction(e -> {//Definimos la accion para el boton visualizar al ser pesionado
+        	Scene escenaDocentes = ventanaDocentes.EscenaListaDocentes(stage, this);//Cambiamos la escena a mostrar los docentes que hay
         	
             stage.setScene(escenaDocentes);
             stage.setMaximized(true);
@@ -386,19 +238,8 @@ public class App extends Application {
     }
     
   
-    public void actualizarTodaLaBaseDeDatos() {
-        System.out.println("Iniciando actualización de archivo..."); 
-        try (PrintWriter pw = new PrintWriter(new FileWriter(rutaArchivo, false))) {
-            for (Docente d : docentes) {
-                pw.print(d.toString()); 
-            }
-            System.out.println("Archivo actualizado correctamente.");  
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al guardar los cambios: " + e.getMessage());
-        }
-    } 
-    public static void main(String[] args) {
+   
+    public static void main(String[] args) {//Iniciamos el programa
         launch();
     }
 

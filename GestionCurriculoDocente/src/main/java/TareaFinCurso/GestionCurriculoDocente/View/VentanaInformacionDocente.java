@@ -35,15 +35,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class VentanaInformacionDocente {
-	 private TextField txtNombres, txtApellidos, txtCorreo;
-	    private TextField txtCelular, txtConvencional;
+	//Creamos tablas para cada atributo de un docente
+	
 	    
 	    private TableView<Titulo> tablaTitulos;
 	    private TableView<Experiencia> tablaExp;
 	    private TableView<Capacitacion> tablaCapacitaciones;   
 	    private TableView<ProduccionAcademica> tablaProducciones; 
 
-	    public Scene EscenaVisualizacion(Stage stage, App app, Docente docenteAEditar) {
+	    public Scene EscenaVisualizacion(Stage stage, App app, Docente docenteAEditar) {//Scena que muestra los datos de un docente en pestañas
 	        
 	        TabPane tabPane = new TabPane();
 	        
@@ -101,7 +101,12 @@ public class VentanaInformacionDocente {
 	        
 	        TableView<Docente> table = new TableView<>();
 
-
+ /*
+* Al aplicar un property value factory, lllamamos al metodo get correspondiente al texto ingresado a su instanciacion, 
+ * haciendo que por cada elemento en este se cree una fila para mostrar la informacion del mismo, y ademas
+* permite la actualizacion constante de cualquier dato agregado
+ */
+	        
 TableColumn<Docente, String> colNombre = new TableColumn<>("Nombre");
 colNombre.setCellValueFactory(new PropertyValueFactory<>("nombres"));
 
@@ -128,7 +133,7 @@ colEstado.setCellValueFactory(new PropertyValueFactory<>("estadoCivil"));
 TableColumn<Docente, String> colCedula = new TableColumn<>("# Cedula");
 colEstado.setCellValueFactory(new PropertyValueFactory<>("cedula"));
 
-table.getItems().add(d);
+table.getItems().add(d);//Asignamos el objeto docente de parametro para la tabla
 table.getColumns().addAll(
 colNombre, colApellido, colCorreo,
 colTelefono, colCarrera, colEstado

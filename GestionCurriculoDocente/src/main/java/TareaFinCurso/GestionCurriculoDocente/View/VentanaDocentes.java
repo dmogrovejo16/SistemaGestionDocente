@@ -18,14 +18,14 @@ import javafx.stage.Stage;
 public class VentanaDocentes {
 
 	
-	public  Scene EscenaListaDocentes(Stage stage, App app) { 
+	public  Scene EscenaListaDocentes(Stage stage, App app) { //Escena para mostra boones con el nombre de los docentes que existan registrados
 		
-		 Button volver = new Button("Volver");
+		 Button volver = new Button("Volver");//Creamos el boton volver y definimos su accion e id
 	        volver.setId("btn-volver2");  
 	        volver.setOnAction(e -> {
 	            stage.setScene(app.EscenaPrincipal(stage));
 	        });
-	        VBox vbox1 = new VBox();
+	        VBox vbox1 = new VBox(); //Creamos un contenedor para el boton
 	        vbox1.setId("vbox-btn-volver");
 	        vbox1.setAlignment(Pos.TOP_LEFT);
 	        vbox1.setMargin(volver, new Insets(10));
@@ -43,13 +43,13 @@ public class VentanaDocentes {
 	        
 	       
 	    
-		ArrayList<Docente> docentes = app.getDocentes();
-		TilePane tilePane = new TilePane();
+		ArrayList<Docente> docentes = app.getDocentes(); //Traemos el array de docente desde la clase app
+		TilePane tilePane = new TilePane();//Creamos un panel de elementos, para organizarlos mejor
 		tilePane.setAlignment(Pos.CENTER);
 		tilePane.setPrefColumns(4); // máximo 4 docentes por fila
 		tilePane.setHgap(10);
 		tilePane.setVgap(10);
-		for (Docente d: docentes) {
+		for (Docente d: docentes) { //Por cada docente, se va a crear un boton con una imagen y un label con el nombre
 			Label name = new Label();
 		    name.setId("nombre");
 		    name.setText(d.getNombres());
@@ -68,7 +68,7 @@ public class VentanaDocentes {
 			btn.setGraphic(vbox);
 			btn.setId("btn-docente");
 			btn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-			btn.setOnAction(e -> {
+			btn.setOnAction(e -> {//Cada botn lleva a vizualizar la informacion docente con el docente asignado como parametro
              Scene escenaInfo = app.getVentanaInformacionDocente().EscenaVisualizacion(stage, app, d);
              stage.setScene(escenaInfo);
              stage.setMaximized(true);

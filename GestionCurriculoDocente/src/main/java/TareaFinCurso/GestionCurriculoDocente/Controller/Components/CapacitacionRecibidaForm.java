@@ -1,6 +1,7 @@
 package TareaFinCurso.GestionCurriculoDocente.Controller.Components;
 
 import javafx.scene.control.TextField;
+//Esta clase crea un formulario con texfields para ingresar una nueva capacitacion, que se iran almacenando en la ventana Capacitaciones
 
 public class CapacitacionRecibidaForm {
 	public TextField institucion;

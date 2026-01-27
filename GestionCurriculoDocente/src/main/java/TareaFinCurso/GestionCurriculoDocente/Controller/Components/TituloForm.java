@@ -2,7 +2,6 @@ package TareaFinCurso.GestionCurriculoDocente.Controller.Components;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-
 public class TituloForm { 
 	  
 	   // Este metodo crea un formulario para ingresar los titulos, por cada cantidad de titulos que presenta el usuario se genera un formulario, uno debajo de otro

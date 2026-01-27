@@ -3,6 +3,7 @@ package TareaFinCurso.GestionCurriculoDocente.Controller.Components;
 import java.util.ArrayList;
 
 import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Controller.FileController;
 import TareaFinCurso.GestionCurriculoDocente.Model.Capacitacion;
 import TareaFinCurso.GestionCurriculoDocente.Model.Docente;
 import TareaFinCurso.GestionCurriculoDocente.Model.Experiencia;
@@ -23,7 +24,7 @@ public class MostrarModal {
 	
 	private TextField txtNombres, txtApellidos, txtCorreo;
     private TextField txtCelular, txtConvencional;
-    
+    FileController fileController = new FileController();
     private TableView<Titulo> tablaTitulos;
     private TableView<Experiencia> tablaExp;
     private TableView<Capacitacion> tablaCapacitaciones;   
@@ -46,7 +47,7 @@ public class MostrarModal {
             d.setProducciones(new ArrayList<>(tablaProducciones.getItems()));     // Guardamos Producciones
             
             // Pasamos las actualizacions al archivo
-            app.actualizarTodaLaBaseDeDatos(); 
+            fileController.actualizarArchivo(); 
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Éxito");

@@ -3,6 +3,7 @@ package TareaFinCurso.GestionCurriculoDocente.View;
 import java.util.ArrayList;
 
 import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Controller.FileController;
 import TareaFinCurso.GestionCurriculoDocente.Controller.Components.InvestigacionForm;
 import TareaFinCurso.GestionCurriculoDocente.Controller.Components.MostrarModal;
 import TareaFinCurso.GestionCurriculoDocente.Controller.Components.PublicacionForm;
@@ -28,6 +29,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VentanaProduccion {
+	FileController fileController = new FileController();
 	InvestigacionForm investigacionForm;
 	PublicacionForm publicacionForm;
 	 ArrayList<Investigacion> investigaciones = new ArrayList<>();
@@ -179,7 +181,7 @@ this.app=app;
     	    		persona.getTelefonoConv(), capacitaciones, experiencia, titulos, producciones);
     	    
 	  		app.getDocentes().add(docente);
-   	     app.escribirDocente(docente);
+   	     fileController.escribirDocente(docente);
     	    
     	    MostrarModal.mostrarVentanaConf();
 			return app.EscenaPrincipal(stage);
@@ -287,7 +289,7 @@ this.app=app;
 	        	    
 	        	    
 	        	     app.getDocentes().add(docente);
-	        	     app.escribirDocente(docente);
+	        	     fileController.escribirDocente(docente);
 	        	    MostrarModal.mostrarVentanaConf();
                     
 	        	    

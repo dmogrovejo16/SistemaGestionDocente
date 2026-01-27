@@ -1,7 +1,7 @@
 package TareaFinCurso.GestionCurriculoDocente.Controller.Components;
 
 import javafx.scene.control.TextField;
-
+//Esta clase crea un formulario para ingresar una nueva investigacion, que se iran apilando en la ventana de investigaciones
 public class InvestigacionForm {
    public TextField titulo;
    public TextField institucion;

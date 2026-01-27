@@ -27,7 +27,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VentanaExperiencia {
-	
+	//Creamos array list para ir guardando las experiencias ingresadas, junto con sus geters para encapsulacion
 	   ArrayList<ExperienciaDocente> experienciasDocente = new ArrayList<>();
 	  ArrayList<ExperienciaNoDocente> experienciasNoDocente = new ArrayList<>();
     ArrayList<ReferenciaLaboral> referenciasLaborales = new ArrayList<>();
@@ -42,13 +42,14 @@ public class VentanaExperiencia {
         app.getVentanaProduccion().usarExperiencia(experiencia);  // Pasas la persona
     }
     
-	public  Scene EscenaRegistroExperienciaDocente(Stage stage, App app) {
+	public  Scene EscenaRegistroExperienciaDocente(Stage stage, App app) {//Escena para ingresar las experiencias docentes
 		 experiencia.clear();
 this.app=app;
 		
-	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de trabajos como decente que presenta");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de trabajos como decente que presenta");//Mostramos el cuadro de
+	  	  //dialogo para obtener la cantidad de formularios a generar o para pasar a la sigiuente
 	  	  
-	  	 if (cantidad==0) {
+	  	 if (cantidad==0) {//Si no tiene experiencia docente, cabiamos a la siguiente escena
 		  		
 	  		experienciasDocente.clear();
 	  		experiencia.addAll(experienciasDocente);
@@ -56,9 +57,9 @@ this.app=app;
 	        
 	  	  }
 	  	  VBox contenedorP =  new VBox();
-	  	ArrayList<ExperienciaDocenteForm> formularios = new ArrayList<>();
+	  	ArrayList<ExperienciaDocenteForm> formularios = new ArrayList<>();//ArrayList para guardar los formularios
 		  
-	        Button volver = new Button("Volver");
+	        Button volver = new Button("Volver");//Creamos un boton para volver y definimos su accion
 	        volver.setId("btn-volver2");  
 	        volver.setOnAction(e -> {
 	        	 experiencia.clear();
@@ -66,8 +67,10 @@ this.app=app;
 	            stage.setScene(app.getVentanaRegistrar().EscenaRegistro4(stage, app));
 	        });
 
-	        Button siguiente = new Button("Siguiente");
+	        Button siguiente = new Button("Siguiente");//Creamos un boton de siguiente y le asinamos un id para los estilos
 	        siguiente.setId("btn-siguiente2");
+	        //Generamos contenedores para organizar el contenido y les asignamos id y eleemntos para el diseño
+
 	        VBox vbox1 = new VBox();
 	        vbox1.setId("vbox-btn-volver");
 	        vbox1.setAlignment(Pos.TOP_LEFT);
@@ -91,7 +94,7 @@ this.app=app;
 	        vbox4.setMargin(volver, new Insets(10));
 	        
 	       
-	        for (int i = 1; i <= cantidad; i++) {
+	        for (int i = 1; i <= cantidad; i++) {//Creamos formularios segun la cantidad de capacitaciones que ha recibido
 	        	
 	        	    TextField institucion = new TextField();
 	        	    TextField catedra = new TextField();
@@ -110,17 +113,17 @@ this.app=app;
 	        	        new Label("Fecha de Fin"), fechaFin
 	        	    );
 
-	        	    // Guardar referencias, NO valores
+	        	    // Guardar los formularios en el array de formularios 
 	        	    formularios.add(new ExperienciaDocenteForm(institucion, catedra, fechaIni, fechaFin));
 
 	        	    vbox2.getChildren().add(vbox);
 	     
 	        }
-	        
+	      //Creamos un panel scrolleable para mostra x cantida de formularios 
 	        ScrollPane scroll = new ScrollPane();
 		    StackPane stackPane = new StackPane();
 		    stackPane.setId("cont-inner");
-		    stackPane.getChildren().add(vbox2);
+		    stackPane.getChildren().add(vbox2);//Añadimos los formularios 
 		    stackPane.setAlignment(vbox2, Pos.CENTER);
 		    scroll.setContent(stackPane);
 		    scroll.setFitToWidth(true);
@@ -132,12 +135,14 @@ this.app=app;
 	        
 	       
 	        contenedorP.setId("fondo");
-	        siguiente.setOnAction(e -> {
+	        siguiente.setOnAction(e -> {//Definimos la funcion del boton siguiente
 	        	 experienciasDocente.clear();
 
-	        	    for (ExperienciaDocenteForm f : formularios) {
+	        	    for (ExperienciaDocenteForm f : formularios) {//Por cada formulario creado, sus valores los vamos pasando al array de capacitaciones
+	        	    	//con el objetivo de depues para el array de capacitaciones y crear el objeto docente
 
 	        	        ExperienciaDocente t = new ExperienciaDocente(
+	        	        		//Obtenemos los valores de todos los  texts
 	        	            f.institucion.getText(),
 	        	            f.catedra.getText(),
 	        	            f.fechaIni.getText(),
@@ -153,13 +158,13 @@ this.app=app;
 		            stage.setScene(EscenaRegistroExperienciaNoDocente(stage, app));
 	        	});
 	        
-	        Scene scene = new Scene(contenedorP,  1530, 780);
+	        Scene scene = new Scene(contenedorP,  1530, 780);//Definimos a la scena con un tamaño fijo
 	        stage.setMaximized(true);
-	        scene.getStylesheets().add(
+	        scene.getStylesheets().add(//Añadimos una hoja de estilos a la escena
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
-	        return  scene;
+	        return  scene;//Retornamos la escena
     }
 	
 	

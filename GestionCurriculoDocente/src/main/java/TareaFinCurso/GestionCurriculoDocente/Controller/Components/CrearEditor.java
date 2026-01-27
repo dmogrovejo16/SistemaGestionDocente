@@ -40,10 +40,10 @@ public class CrearEditor {
 	
 	  // Metodo para editar la informacion personal del docente
     public VBox crearFormularioDatos(Docente d) {
-        VBox vbox = new VBox(10);
+        VBox vbox = new VBox(10); //Creamos un vbox para ir insertando y ordenando los elementos
         vbox.setPadding(new Insets(15));
         
-        txtNombres = new TextField(d.getNombres());
+        txtNombres = new TextField(d.getNombres()); //Inicializamos los texfields con los valores pregrabados
         txtApellidos = new TextField(d.getApellidos());
         txtCorreo = new TextField(d.getCorreo());
         txtCelular = new TextField(String.valueOf(d.getTelefonoCel()));
@@ -52,8 +52,8 @@ public class CrearEditor {
         TextField txtCedula = new TextField(String.valueOf(d.getCedula()));
         txtCedula.setDisable(true); 
 
-        vbox.getChildren().addAll(
-            new Label("Cédula (No editable):"), txtCedula,
+        vbox.getChildren().addAll( //Añadimos los text fields al contenedor
+            new Label("Cédula (No editable):"), txtCedula, //Creamos labels para indicar al usuario que debe ingresar
             new Label("Nombres:"), txtNombres,
             new Label("Apellidos:"), txtApellidos,
             new Label("Correo Institucional:"), txtCorreo,
@@ -68,34 +68,39 @@ public class CrearEditor {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(15));
         
-        tablaTitulos = new TableView<>();
-        tablaTitulos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tablaTitulos = new TableView<>(); //Creamos una tabla para mostrar los datos existentes y los que se van agregando
+        tablaTitulos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);//Le asignamos el tamaño de la pantalla 
         tablaTitulos.setPrefHeight(200);
         
         // Llamamos a los geters de la clase docente
-        TableColumn<Titulo, String> colTitulo = new TableColumn<>("Título");
-        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        TableColumn<Titulo, String> colTitulo = new TableColumn<>("Título");//Creamos una columna para la tabla que contenga el titulo
+        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));//Le asignamos por defecto el valor de titulo del docente
+        /*
+         * Al aplicar un property value factory, lllamamos al metodo get correspondiente al texto ingresado a su instanciacion, 
+         * haciendo que por cada elemento en este se cree una fila para mostrar la informacion del mismo, y ademas
+         * permite la actualizacion constante de cualquier dato agregado
+         */
         
-        TableColumn<Titulo, String> colInst = new TableColumn<>("Institución");
-        colInst.setCellValueFactory(new PropertyValueFactory<>("institucion"));
+        TableColumn<Titulo, String> colInst = new TableColumn<>("Institución");//Creamos una columna para la tabla que contenga la institucion 
+        colInst.setCellValueFactory(new PropertyValueFactory<>("institucion"));//Le asignamos por defecto el valor de la institucion  del docente
 
-        tablaTitulos.getColumns().addAll(colTitulo, colInst);
+        tablaTitulos.getColumns().addAll(colTitulo, colInst); //Añadimos las columnas a la tabla
         
         
-        ObservableList<Titulo> datos = FXCollections.observableArrayList(docente.getTitulos());
-        tablaTitulos.setItems(datos);
+        ObservableList<Titulo> datos = FXCollections.observableArrayList(docente.getTitulos());//Creamos una lista observable que contenga los titulos
+        tablaTitulos.setItems(datos);//Mandamos la lista observable  a la tabla para ir leyendo y mostrando los valores 
         
-        Button btnEliminar = new Button("Eliminar Seleccionado");
-        btnEliminar.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;");
-        btnEliminar.setOnAction(e -> {
-            Titulo t = tablaTitulos.getSelectionModel().getSelectedItem();
+        Button btnEliminar = new Button("Eliminar Seleccionado"); //Creamos un boton para eliminar
+        btnEliminar.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;");//Le asignamos un estilo
+        btnEliminar.setOnAction(e -> {//Definimos la accion del boton eliminar 
+            Titulo t = tablaTitulos.getSelectionModel().getSelectedItem();//Obtenemos el elemento en la tabla y lo retiramos si no esta vacio
             if(t != null) datos.remove(t);
         });
         
-        TextField txtNewTitulo = new TextField(); txtNewTitulo.setPromptText("Nombre Título");
+        TextField txtNewTitulo = new TextField(); txtNewTitulo.setPromptText("Nombre Título");//Generamos los campos para que el usuairo ingrese nuevo titulo
         TextField txtNewInst = new TextField(); txtNewInst.setPromptText("Institución");
         
-        Button btnAgregar = new Button("Agregar");
+        Button btnAgregar = new Button("Agregar"); //Creamos un boton agregar y definimos su funcion
         btnAgregar.setOnAction(e -> {
             if(!txtNewTitulo.getText().isEmpty()){
                 // Ajusta los parámetros según tu constructor de Titulo
@@ -110,7 +115,7 @@ public class CrearEditor {
             new Label("Títulos:"), tablaTitulos, btnEliminar, 
             new Separator(), new Label("Agregar:"), txtNewTitulo, txtNewInst, btnAgregar
         );
-        return vbox;
+        return vbox; //Retornamos el vbox con la tabla, labels y textfild a la escena
     }
 
     // Metodo para editar las experiencias del docente

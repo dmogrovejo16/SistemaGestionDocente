@@ -1,6 +1,7 @@
 package TareaFinCurso.GestionCurriculoDocente.Controller.Components;
 
 import javafx.scene.control.TextField;
+//Esta clase crea un formulario con texfields para ingresar una nueva experiencia como docente, que se iran almacenando en la ventana Experiencia
 
 public class ExperienciaDocenteForm {
    public  TextField institucion;

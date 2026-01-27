@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class VentanaCapacitacion {
 
-	
+	//Creamos array list para ir guardando las capacitaciones ingresadas, junto con sus geters para encapsulacion
 	 ArrayList<CapacitacionImpartida> capacitacionesImpartidas = new ArrayList<>();
 	  ArrayList<CapacitacionRecibida> capacitacionesRecibidas = new ArrayList<>();
 	  ArrayList<Capacitacion> capacitaciones = new ArrayList<>();
@@ -32,38 +32,40 @@ public class VentanaCapacitacion {
 	  public void pasarCapacitacion() {
 	        
 	       
-			app.getVentanaProduccion().usarCapacitacion(capacitaciones);  // Pasas la persona
+			app.getVentanaProduccion().usarCapacitacion(capacitaciones);  // Pasar la persona
 	    }
 	  
 	  
 	  
 	  
-	  public  Scene EscenaRegistroCapacitacionRecibida(Stage stage,  App app) {
+	  public  Scene EscenaRegistroCapacitacionRecibida(Stage stage,  App app) {//Scena para registrar capacitacion recibidas
 
 this.app=app;
 			
-	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de capacitaciones que ha recibido");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de capacitaciones que ha recibido"); //Mostramos el cuadro de
+	  	  //dialogo para obtener la cantidad de formularios a generar o para pasar a la sigiuente
 	  	  
-	if (cantidad==0) {
+	if (cantidad==0) { //Si no tiene capacitacion, cabiamos a la siguiente escena 
 	  		
-		capacitacionesRecibidas.clear();
-		capacitaciones.addAll(capacitacionesRecibidas);
+		capacitacionesRecibidas.clear();//Borramos lo residual
+		capacitaciones.addAll(capacitacionesRecibidas);//Cambianos de escena 
 	  		return EscenaRegistroCapacitacionImpartida(stage, app);
 	        
 	  	  }
 	  	  
 	  	  VBox contenedorP =  new VBox();
-	  	ArrayList<CapacitacionRecibidaForm> formularios = new ArrayList<>();
+	  	ArrayList<CapacitacionRecibidaForm> formularios = new ArrayList<>();//ArrayList para guardar los formularios
 		  
-	        Button volver = new Button("Volver");
+	        Button volver = new Button("Volver");//Creamos un boton para volver y definimos su accion
 	        volver.setId("btn-volver2");  
 	        volver.setOnAction(e -> {
 	        	VentanaExperiencia ventanaExperiencia = new VentanaExperiencia();
-	            stage.setScene(app.getVentanaExperiencia().EscenaRegistroReferenciasLaborales(stage, app));
+	            stage.setScene(app.getVentanaExperiencia().EscenaRegistroReferenciasLaborales(stage, app));//Pasamos a la anterior escena
 	        });
 
-	        Button siguiente = new Button("Siguiente");
+	        Button siguiente = new Button("Siguiente");//Creamos un boton de siguiente y le asinamos un id para los estills
 	        siguiente.setId("btn-siguiente2");
+	        //Generamos contenedores para organizar el contenido y les asignamos id y eleemntos para el diseño
 	        VBox vbox1 = new VBox();
 	        vbox1.setId("vbox-btn-volver");
 	        vbox1.setAlignment(Pos.TOP_LEFT);
@@ -87,7 +89,7 @@ this.app=app;
 	        vbox4.setMargin(volver, new Insets(10));
 	        
 	       
-	        for (int i = 1; i <= cantidad; i++) {
+	        for (int i = 1; i <= cantidad; i++) { //Creamos formularios segun la cantidad de capacitaciones que ha recibido
 	        	
 	        	    TextField institucion = new TextField();
 	        	    TextField tipoEvento = new TextField();
@@ -107,17 +109,17 @@ this.app=app;
 	        	        new Label("Fecha de Fin"), fechaFin
 	        	    );
 
-	        	    // Guardar referencias, NO valores
+	        	    // Guardar los formularios en el array de formularios 
 	        	    formularios.add(new CapacitacionRecibidaForm(institucion, tipoEvento, numHoras, fechaIni, fechaFin));
 
 	        	    vbox2.getChildren().add(vbox);
 	     
 	        }
 	        
-	        ScrollPane scroll = new ScrollPane();
+	        ScrollPane scroll = new ScrollPane();//Creamos un panel scrolleable para mostra x cantida de formularios 
 		    StackPane stackPane = new StackPane();
 		    stackPane.setId("cont-inner");
-		    stackPane.getChildren().add(vbox2);
+		    stackPane.getChildren().add(vbox2);//Añadimos los formularios 
 		    stackPane.setAlignment(vbox2, Pos.CENTER);
 		    scroll.setContent(stackPane);
 		    scroll.setFitToWidth(true);
@@ -129,12 +131,14 @@ this.app=app;
 	        
 	        contenedorP.setId("fondo");
 	        
-	        siguiente.setOnAction(e -> {
+	        siguiente.setOnAction(e -> {//Definimos la funcion del boton siguiente
 	        	 capacitacionesRecibidas.clear();
 
-	        	    for (CapacitacionRecibidaForm f : formularios) {
+	        	    for (CapacitacionRecibidaForm f : formularios) {//Por cada formulario creado, sus valores los vamos pasando al array de capacitaciones
+	        	    	//con el objetivo de depues para el array de capacitaciones y crear el objeto docente
 
 	        	        CapacitacionRecibida t = new CapacitacionRecibida(
+	        	        		//Obtenemos los valores de todos los  texts
 	        	        		 f.tipoEvento.getText(),
 f.institucion.getText(),
 	        	            f.fechaFin.getText(),
@@ -155,11 +159,11 @@ f.institucion.getText(),
 	        
 	        Scene scene = new Scene(contenedorP,  1530, 780);
 
-	        scene.getStylesheets().add(
+	        scene.getStylesheets().add(//Añadimos una hoja de estilos a la escena
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar2.css")
 	                        .toExternalForm()
 	            );
-	        return  scene;
+	        return  scene;//Retornamos la escena
     }
 	  
 	  

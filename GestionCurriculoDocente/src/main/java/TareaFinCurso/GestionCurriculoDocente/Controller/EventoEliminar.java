@@ -11,8 +11,8 @@ import java.util.List;
 
 public class EventoEliminar {
 	
-	public Boolean EventoEliminar(String identificador) {
-		 File archivo = new File("C:\\Users\\mathi\\git\\SistemaGestionDocente\\GestionCurriculoDocente\\docentes.txt");
+	public Boolean EventoEliminar(String identificador) { //Metodo para eliminar docente a traves de lineas clave
+		 File archivo = new File("docentes.txt");
 		    List<String> resultado = new ArrayList<>();
 		    List<String> bloqueDocente = new ArrayList<>();
 
@@ -20,7 +20,7 @@ public class EventoEliminar {
 		    boolean encontrado = false;
 		    boolean dentroDocente = false;
 
-		    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+		    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) { //Instanciamos un lector de archivos
 		        String linea;
 
 		        while ((linea = br.readLine()) != null) {
