@@ -3,11 +3,14 @@ package TareaFinCurso.GestionCurriculoDocente.View;
 import java.util.ArrayList;
 
 import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.ExperienciaDocenteForm;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.ExperienciaNoDocenteForm;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.MostrarModal;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.ReferenciasLaboralesForm;
 import TareaFinCurso.GestionCurriculoDocente.Model.Experiencia;
 import TareaFinCurso.GestionCurriculoDocente.Model.ExperienciaDocente;
 import TareaFinCurso.GestionCurriculoDocente.Model.ExperienciaNoDocente;
 import TareaFinCurso.GestionCurriculoDocente.Model.ReferenciaLaboral;
-import TareaFinCurso.GestionCurriculoDocente.View.VentanaRegistrar.TituloForm;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,7 +34,9 @@ public class VentanaExperiencia {
     
     ArrayList<Experiencia> experiencia = new ArrayList<>();
 	App app;
-    
+    ExperienciaDocenteForm experienciaDocenteForm;
+    ExperienciaNoDocenteForm experienciaNoDocenteForm;
+    ReferenciasLaboralesForm referenciasLaboralesForm;
     public void pasarExperiencia() {
        
         app.getVentanaProduccion().usarExperiencia(experiencia);  // Pasas la persona
@@ -41,7 +46,7 @@ public class VentanaExperiencia {
 		 experiencia.clear();
 this.app=app;
 		
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de trabajos como decente que presenta");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de trabajos como decente que presenta");
 	  	  
 	  	 if (cantidad==0) {
 		  		
@@ -163,7 +168,7 @@ this.app=app;
 
 		stage.setMaximized(true);
 		
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de trabajos no-docente que presenta");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de trabajos no-docente que presenta");
 	  	  
 	  	if (cantidad==0) {
 	  		
@@ -285,7 +290,7 @@ this.app=app;
 
 		stage.setMaximized(true);
 		
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de referencias laborales que presenta");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de referencias laborales que presenta");
 	  	  
 	  	if (cantidad==0) {
 	  		
@@ -404,98 +409,13 @@ this.app=app;
 	
 	
 	
-	public class ExperienciaDocenteForm {
-	    TextField institucion;
-	    TextField catedra;
-	    
-	    TextField fechaIni;
-	    TextField fechaFin;
 
-	    public ExperienciaDocenteForm( 
-	    TextField institucion,
-	    TextField catedra,
-	    TextField fechaIni,
-	    TextField fechaFin) {
-	        this.institucion = institucion;
-	        this.catedra = catedra;
-	        this.fechaIni = fechaIni;
-	        this.fechaFin = fechaFin;
-	    }
-	}
 	
-	public class ExperienciaNoDocenteForm {
-	    TextField institucion;
-	    TextField funcion;
-	    
-	    TextField fechaIni;
-	    TextField fechaFin;
 
-	    public ExperienciaNoDocenteForm( 
-	    TextField institucion,
-	    TextField funcion,
-	    TextField fechaIni,
-	    TextField fechaFin) {
-	        this.institucion = institucion;
-	        this.funcion = funcion;
-	        this.fechaIni = fechaIni;
-	        this.fechaFin = fechaFin;
-	    }
-	}
-	
-	public class ReferenciasLaboralesForm {
-	    TextField institucion;
-	    TextField jefeInmediato;
-	    TextField telefono;
-
-	    public ReferenciasLaboralesForm( 
-	    TextField institucion,
-	    TextField jefeInmediato,
-	    TextField telefono) {
-	        this.institucion = institucion;
-	        this.jefeInmediato = jefeInmediato;
-	        this.telefono = telefono;
-	    }
-	}
 	
 	
 	 
-	  public static Integer mostrarVentana(String txt) {
-
-	        Stage ventana = new Stage();
-	        ventana.initModality(Modality.APPLICATION_MODAL);
-	        ventana.setTitle("Ingresar cantidad");
-	        ventana.setMinWidth(250);
-
-	        Label label = new Label(txt);
-	        TextField txtCantidad = new TextField();
-	        txtCantidad.setPromptText("Ej: 5");
-
-	        Button btnEnviar = new Button("Enviar");
-
-	        final Integer[] cantidad = new Integer[1];
-
-	        btnEnviar.setOnAction(e -> {
-	            try {
-	                cantidad[0] = Integer.parseInt(txtCantidad.getText());
-	                ventana.close();
-	            } catch (NumberFormatException ex) {
-	                Alert alerta = new Alert(Alert.AlertType.ERROR);
-	                alerta.setHeaderText(null);
-	                alerta.setContentText("Ingrese un número válido");
-	                alerta.showAndWait();
-	            }
-	        });
-
-	        VBox layout = new VBox(10);
-	        layout.setPadding(new Insets(15));
-	        layout.getChildren().addAll(label, txtCantidad, btnEnviar);
-
-	        Scene scene = new Scene(layout);
-	        ventana.setScene(scene);
-	        ventana.showAndWait(); // Espera hasta que se cierre
-
-	        return cantidad[0];
-	    }
+	  
 	  
 	
 }

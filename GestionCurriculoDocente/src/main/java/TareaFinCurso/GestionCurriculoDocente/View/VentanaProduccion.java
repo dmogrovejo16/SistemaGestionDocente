@@ -3,6 +3,9 @@ package TareaFinCurso.GestionCurriculoDocente.View;
 import java.util.ArrayList;
 
 import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.InvestigacionForm;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.MostrarModal;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.PublicacionForm;
 import TareaFinCurso.GestionCurriculoDocente.Model.Capacitacion;
 import TareaFinCurso.GestionCurriculoDocente.Model.Docente;
 import TareaFinCurso.GestionCurriculoDocente.Model.Experiencia;
@@ -11,7 +14,6 @@ import TareaFinCurso.GestionCurriculoDocente.Model.Persona;
 import TareaFinCurso.GestionCurriculoDocente.Model.ProduccionAcademica;
 import TareaFinCurso.GestionCurriculoDocente.Model.Publicacion;
 import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
-import TareaFinCurso.GestionCurriculoDocente.View.VentanaCapacitacion.CapacitacionImpartidaForm;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,6 +28,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VentanaProduccion {
+	InvestigacionForm investigacionForm;
+	PublicacionForm publicacionForm;
 	 ArrayList<Investigacion> investigaciones = new ArrayList<>();
 	  ArrayList<Publicacion> publicaciones = new ArrayList<>();
 		ArrayList<ProduccionAcademica> producciones = new ArrayList<>();
@@ -43,7 +47,7 @@ public class VentanaProduccion {
 this.app=app;
 
 			
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de investigaciones que ha realizado");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de investigaciones que ha realizado");
 	  	  
 	    	if (cantidad==0) {
 		  		
@@ -163,7 +167,7 @@ this.app=app;
 
 
 			
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de publicaciones que ha realizado");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de publicaciones que ha realizado");
 	  	  
 	  	if (cantidad==0) {
 	  		
@@ -177,7 +181,7 @@ this.app=app;
 	  		app.getDocentes().add(docente);
    	     app.escribirDocente(docente);
     	    
-    	    mostrarVentanaConf();
+    	    MostrarModal.mostrarVentanaConf();
 			return app.EscenaPrincipal(stage);
 		        
 		  	  }
@@ -284,7 +288,7 @@ this.app=app;
 	        	    
 	        	     app.getDocentes().add(docente);
 	        	     app.escribirDocente(docente);
-	        	    mostrarVentanaConf();
+	        	    MostrarModal.mostrarVentanaConf();
                     
 	        	    
 	        	    
@@ -316,107 +320,9 @@ this.app=app;
 	       this.capacitaciones = capacitacion;
 	    }
 	  
-	  
-	  
-	  
-	  
-	  public class InvestigacionForm {
-		    TextField titulo;
-		    TextField institucion;
-		    TextField anio;
-
-
-		    public InvestigacionForm( 
-		    		 TextField titulo,
-		    		 TextField institucion,
-		    		 TextField anio) {
-		        this.institucion = institucion;
-		        this.titulo = titulo;
-		        this.anio = anio;
-
-		    }
-		}
-	  
-	  public class PublicacionForm {
-		    TextField titulo;
-		    TextField editorial;
-		    TextField anio;
-
-
-		    public PublicacionForm( 
-		    		 TextField titulo,
-		    		 TextField editorial,
-		    		 TextField anio) {
-		        this.editorial = editorial;
-		        this.titulo = titulo;
-		        this.anio = anio;
-
-		    }
-		}
-	  
-	  public static Integer mostrarVentana(String txt) {
-
-	        Stage ventana = new Stage();
-	        ventana.initModality(Modality.APPLICATION_MODAL);
-	        ventana.setTitle("Ingresar cantidad");
-	        ventana.setMinWidth(250);
-
-	        Label label = new Label(txt);
-	        TextField txtCantidad = new TextField();
-	        txtCantidad.setPromptText("Ej: 5");
-
-	        Button btnEnviar = new Button("Enviar");
-
-	        final Integer[] cantidad = new Integer[1];
-
-	        btnEnviar.setOnAction(e -> {
-	            try {
-	                cantidad[0] = Integer.parseInt(txtCantidad.getText());
-	                ventana.close();
-	            } catch (NumberFormatException ex) {
-	                Alert alerta = new Alert(Alert.AlertType.ERROR);
-	                alerta.setHeaderText(null);
-	                alerta.setContentText("Ingrese un número válido");
-	                alerta.showAndWait();
-	            }
-	        });
-
-	        VBox layout = new VBox(10);
-	        layout.setPadding(new Insets(15));
-	        layout.getChildren().addAll(label, txtCantidad, btnEnviar);
-
-	        Scene scene = new Scene(layout);
-	        ventana.setScene(scene);
-	        ventana.showAndWait(); // Espera hasta que se cierre
-
-	        return cantidad[0];
-	    }
 		
 	  
-	  public static void mostrarVentanaConf() {
-
-	        Stage ventana = new Stage();
-	        ventana.initModality(Modality.APPLICATION_MODAL);
-	        ventana.setTitle("Registro Exitoso");
-	        ventana.setMinWidth(250);
-
-            Label label = new Label("El docente ha sido agregado con éxito!");
-	        Button btnEnviar = new Button("Entendido");
-
-	        btnEnviar.setOnAction(e -> {
-	             
-	                ventana.close();
-	        });
-
-	        VBox layout = new VBox(10);
-	        layout.setPadding(new Insets(15));
-	        layout.getChildren().addAll(label, btnEnviar);
-
-	        Scene scene = new Scene(layout);
-	        ventana.setScene(scene);
-	        ventana.showAndWait(); // Espera hasta que se cierre
-
-	    }
+	  
 		
 	  
 	  

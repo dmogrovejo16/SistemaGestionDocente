@@ -5,6 +5,8 @@ package TareaFinCurso.GestionCurriculoDocente.View;
 import java.util.ArrayList;
 
 import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.MostrarModal;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.TituloForm;
 import TareaFinCurso.GestionCurriculoDocente.Model.Persona;
 import TareaFinCurso.GestionCurriculoDocente.Model.Titulo;
 import TareaFinCurso.GestionCurriculoDocente.Model.TituloCuartoNivel;
@@ -144,36 +146,36 @@ public class VentanaRegistrar{
 	        			 ciudadNac.getText().isEmpty()||direccion.getText().isEmpty() ||correo.getText().isEmpty()||
 	        			 cedula.getText().isEmpty()|| telefonoCel.getText().isEmpty()||
 	        			 telefonoConv.getText().isEmpty()){//Validamos que los campos este completo
-	        	        mostrarError("Los campos no pueden estar vacíos");
+	        		 MostrarModal.mostrarError("Los campos no pueden estar vacíos");
 	        	        return;
 	        	    }
 
 	        	    //Validamos que solo contenga números
 	        	    if (!cedula.getText().matches("\\d+")) {
-	        	        mostrarError("El campo CEDULA solo debe contener números");
+	        	    	MostrarModal.mostrarError("El campo CEDULA solo debe contener números");
 	        	        return;
 	        	    }
 	        	    
 	        	    if (!telefonoCel.getText().matches("\\d+")) {
-	        	        mostrarError("El campo TELEFONO CELULAR solo debe contener números");
+	        	    	MostrarModal.mostrarError("El campo TELEFONO CELULAR solo debe contener números");
 	        	        return;
 	        	    }
 	        	    
 	        	    if (!telefonoConv.getText().matches("\\d+")) {
-	        	        mostrarError("El campo TELEFONO CONVENCIONAL solo debe contener números");
+	        	    	MostrarModal.mostrarError("El campo TELEFONO CONVENCIONAL solo debe contener números");
 	        	        return;
 	        	    }
 	        	    
 	        	    //Definimos una expresion que valide el correo con su dominio y el @
 	        	    if (!correo.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-	        	    	mostrarError("El campo CORREO debe estar en el formato correcto");
+	        	    	MostrarModal.mostrarError("El campo CORREO debe estar en el formato correcto");
 	        	    	return;
 	        	    }
 	        	    //Definimos una expresion que valide la fecha en el formato 
 	        	    if (!fechaNac.getText().matches(
 	        	            "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19|20)\\d\\d$"
 	        	    	    )) {
-	        	    	mostrarError("El campo FECHA debe estar en el formato correcto");
+	        	    	MostrarModal.mostrarError("El campo FECHA debe estar en el formato correcto");
 	        	    	return;
 	        	    }
 	        	
@@ -202,17 +204,12 @@ public class VentanaRegistrar{
 	        return  scene;
 	    }
 
-	  public static void mostrarError(String mensaje) { //Metodo para mostrar un alerto de error perzonalizado
-		    Alert alert = new Alert(Alert.AlertType.ERROR);
-		    alert.setHeaderText(null);
-		    alert.setContentText(mensaje);
-		    alert.showAndWait();
-		}
+	
       
 	  public Scene EscenaRegistro2(Stage stage, App app) {
 
 		    // Muestra una ventana modal pidiendo la cantidad de títulos de segundo nivel
-		    Integer cantidad = VentanaRegistrar.mostrarVentana(
+		    Integer cantidad = MostrarModal.mostrarVentana(
 		            "Ingrese su cantidad de titulos de segundo nivel"
 		    );
 
@@ -387,7 +384,7 @@ public class VentanaRegistrar{
 		    stage.setMaximized(true);
 
 		    // Muestra una ventana modal para ingresar la cantidad de títulos de tercer nivel
-		    Integer cantidad = VentanaRegistrar.mostrarVentana(
+		    Integer cantidad = MostrarModal.mostrarVentana(
 		            "Ingrese su cantidad de titulos de tercer nivel"
 		    );
 
@@ -561,7 +558,7 @@ public class VentanaRegistrar{
 		    stage.setMaximized(true);
 
 		    // Muestra una ventana modal para ingresar la cantidad de títulos de cuarto nivel
-		    Integer cantidad = VentanaRegistrar.mostrarVentana(
+		    Integer cantidad = MostrarModal.mostrarVentana(
 		            "Ingrese su cantidad de titulos de cuartos nivel"
 		    );
 
@@ -750,64 +747,6 @@ public class VentanaRegistrar{
 		}
 
 	  
-	  public class TituloForm { 
-		  /*
-		   * Este metodo crea un formulario para ingresar los titulos, por cada cantidad de titulos que presenta el usuario se genera un formulario, uno debajo de otro
-		   */
-		    TextField institucion;
-		    ComboBox<String> titulo;
-		    
-		    TextField ciudad;
-		    TextField fecha;
-
-		    public TituloForm(TextField institucion, ComboBox<String> titulo,
-		                      TextField ciudad, TextField fecha) {
-		        this.institucion = institucion;
-		        this.titulo = titulo;
-		        this.ciudad = ciudad;
-		        this.fecha = fecha;
-		    }
-		}
 	  
-	  
-	  public static Integer mostrarVentana(String txt) { //Cuando se ingrese un numero de titulos, experiencias, referencias, publicaciones, se genera un alerto donde se deben ingresar la cantidad 
-		  //de los mismos
-
-	        Stage ventana = new Stage();
-	        ventana.initModality(Modality.APPLICATION_MODAL);
-	        ventana.setTitle("Ingresar cantidad");
-	        ventana.setMinWidth(250);
-
-	        Label label = new Label(txt);
-	        TextField txtCantidad = new TextField();
-	        txtCantidad.setPromptText("Ej: 5");
-
-	        Button btnEnviar = new Button("Enviar");
-
-	        final Integer[] cantidad = new Integer[1];
-
-	        btnEnviar.setOnAction(e -> {
-	            try {
-	                cantidad[0] = Integer.parseInt(txtCantidad.getText());
-	                ventana.close();
-	            } catch (NumberFormatException ex) {
-	                Alert alerta = new Alert(Alert.AlertType.ERROR);
-	                alerta.setHeaderText(null);
-	                alerta.setContentText("Ingrese un número válido");
-	                alerta.showAndWait();
-	            }
-	        });
-
-	        VBox layout = new VBox(10);
-	      
-	        layout.setPadding(new Insets(15));
-	        layout.getChildren().addAll(label, txtCantidad, btnEnviar);
-
-	        Scene scene = new Scene(layout);
-	        ventana.setScene(scene);
-	        ventana.showAndWait(); // Espera hasta que se cierre
-
-	        return cantidad[0];
-	    }
 	  
 }

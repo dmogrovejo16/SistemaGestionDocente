@@ -3,10 +3,12 @@ package TareaFinCurso.GestionCurriculoDocente.View;
 import java.util.ArrayList;
 
 import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.CapacitacionImpartidaForm;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.CapacitacionRecibidaForm;
+import TareaFinCurso.GestionCurriculoDocente.Controller.Components.MostrarModal;
 import TareaFinCurso.GestionCurriculoDocente.Model.Capacitacion;
 import TareaFinCurso.GestionCurriculoDocente.Model.CapacitacionImpartida;
 import TareaFinCurso.GestionCurriculoDocente.Model.CapacitacionRecibida;
-import TareaFinCurso.GestionCurriculoDocente.View.VentanaExperiencia.ExperienciaDocenteForm;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -40,7 +42,7 @@ public class VentanaCapacitacion {
 
 this.app=app;
 			
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de capacitaciones que ha recibido");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de capacitaciones que ha recibido");
 	  	  
 	if (cantidad==0) {
 	  		
@@ -166,7 +168,7 @@ f.institucion.getText(),
 
 
 			
-	  	  Integer cantidad = VentanaRegistrar.mostrarVentana("Ingrese la cantidad de capacitaciones que ha impartido");
+	  	  Integer cantidad = MostrarModal.mostrarVentana("Ingrese la cantidad de capacitaciones que ha impartido");
 	  	  
 	  	if (cantidad==0) {
 	  		capacitacionesImpartidas.clear();
@@ -286,47 +288,8 @@ f.institucion.getText(),
 	        return  scene;
     }
 	
-	public class CapacitacionImpartidaForm {
-	    TextField tipoEvento;
-	    TextField institucion;
-	    TextField numHoras;
-	    TextField fechaIni;
-	    TextField fechaFin;
-
-	    public CapacitacionImpartidaForm( 
-	    		 TextField tipoEvento,
-	    		 TextField institucion,
-	    		 TextField numHoras,
-	    		 TextField fechaIni,
-	    		 TextField fechaFin) {
-	        this.institucion = institucion;
-	        this.tipoEvento = tipoEvento;
-	        this.numHoras = numHoras;
-	        this.fechaIni = fechaIni;
-	        this.fechaFin = fechaFin;
-	    }
-	}
 	
-	public class CapacitacionRecibidaForm {
-		TextField institucion;
-		TextField tipoEvento;
-		    TextField numHoras;
-		    TextField fechaIni;
-		    TextField fechaFin;
-
-	    public CapacitacionRecibidaForm( 
-	    		 TextField tipoEvento,
-	    		 TextField institucion,
-	    		 TextField numHoras,
-	    		 TextField fechaIni,
-	    		 TextField fechaFin) {
-	        this.institucion = institucion;
-	        this.tipoEvento = tipoEvento;
-	        this.numHoras = numHoras;
-	        this.fechaIni = fechaIni;
-	        this.fechaFin = fechaFin;
-	    }
-	}
+	
 
 	public static Integer mostrarVentana(String txt) {
 
