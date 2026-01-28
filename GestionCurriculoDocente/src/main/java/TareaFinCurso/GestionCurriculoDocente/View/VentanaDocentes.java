@@ -85,7 +85,7 @@ public class VentanaDocentes {
 	       
         contenedorP.setId("fondo");
 		
-		Scene scene = new Scene(contenedorP,1530, 780); // Agregamos el contenedor con las datos a la escena
+		Scene scene = new Scene(contenedorP,1530, 900); // Agregamos el contenedor con las datos a la escena
         scene.getStylesheets().add(//Le asignamos una hoja de estilos a esta escena para darle dise!no
                 getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/docentes.css")
                         .toExternalForm()

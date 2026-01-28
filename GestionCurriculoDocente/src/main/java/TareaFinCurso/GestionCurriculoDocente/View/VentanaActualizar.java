@@ -34,6 +34,7 @@ public class VentanaActualizar {
     CrearEditor crearEditor = new CrearEditor();
     MostrarModal mostrarModal = new MostrarModal();
     
+    
     public Scene EscenaEdicion(Stage stage, App app, Docente docenteAEditar) {
         
         TabPane tabPane = new TabPane();
@@ -65,11 +66,11 @@ public class VentanaActualizar {
 
         // Mostramos las pestañas creadas
         tabPane.getTabs().addAll(tabDatos, tabTitulos, tabExperiencia, tabCapacitacion, tabProduccion);
-
+        mostrarModal.inicializarReferencias(crearEditor); 
         // BOTÓN GUARDAR
         Button btnGuardar = new Button("Guardar Todos los Cambios");
         btnGuardar.setStyle("-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;");
-        btnGuardar.setOnAction(e -> {
+        btnGuardar.setOnAction(e -> { //Definimos accion del boton guardar
             mostrarModal.guardarCambios(docenteAEditar, app, stage);
         });
 

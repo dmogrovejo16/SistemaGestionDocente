@@ -30,10 +30,83 @@ import javafx.scene.layout.VBox;
 public class CrearEditor {
 	
 	
-	    private TextField txtNombres, txtApellidos, txtCorreo;
-	    private TextField txtCelular, txtConvencional;
-	    
-	    private TableView<Titulo> tablaTitulos;
+	    private static TextField txtNombres;
+		private static TextField txtApellidos;
+		private static TextField txtCorreo;
+	    private static TextField txtCelular, txtConvencional;
+	    public static TextField getTxtNombres() {
+			return txtNombres;
+		}
+
+		public  void setTxtNombres(TextField txtNombres) {
+			this.txtNombres = txtNombres;
+		}
+
+		public static TextField getTxtApellidos() {
+			return txtApellidos;
+		}
+
+		public void setTxtApellidos(TextField txtApellidos) {
+			this.txtApellidos = txtApellidos;
+		}
+
+		public static TextField getTxtCorreo() {
+			return txtCorreo;
+		}
+
+		public void setTxtCorreo(TextField txtCorreo) {
+			this.txtCorreo = txtCorreo;
+		}
+
+		public static TextField getTxtCelular() {
+			return txtCelular;
+		}
+
+		public void setTxtCelular(TextField txtCelular) {
+			this.txtCelular = txtCelular;
+		}
+
+		public static TextField getTxtConvencional() {
+			return txtConvencional;
+		}
+
+		public void setTxtConvencional(TextField txtConvencional) {
+			this.txtConvencional = txtConvencional;
+		}
+
+		public TableView<Titulo> getTablaTitulos() {
+			return tablaTitulos;
+		}
+
+		public void setTablaTitulos(TableView<Titulo> tablaTitulos) {
+			this.tablaTitulos = tablaTitulos;
+		}
+
+		public TableView<Experiencia> getTablaExp() {
+			return tablaExp;
+		}
+
+		public void setTablaExp(TableView<Experiencia> tablaExp) {
+			this.tablaExp = tablaExp;
+		}
+
+		public TableView<ProduccionAcademica> getTablaProducciones() {
+			return tablaProducciones;
+		}
+
+		public TableView<Capacitacion> getTablaCapacitaciones() {
+			return tablaCapacitaciones;
+		}
+
+		public void setTablaCapacitaciones(TableView<Capacitacion> tablaCapacitaciones) {
+			this.tablaCapacitaciones = tablaCapacitaciones;
+		}
+
+		public void setTablaProducciones(TableView<ProduccionAcademica> tablaProducciones) {
+			this.tablaProducciones = tablaProducciones;
+		}
+
+		private TableView<Titulo> tablaTitulos;
 	    private TableView<Experiencia> tablaExp;
 	    private TableView<Capacitacion> tablaCapacitaciones;   
 	    private TableView<ProduccionAcademica> tablaProducciones; 

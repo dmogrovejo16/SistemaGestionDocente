@@ -21,14 +21,31 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MostrarModal {
-	
-	private TextField txtNombres, txtApellidos, txtCorreo;
-    private TextField txtCelular, txtConvencional;
-    FileController fileController = new FileController();
-    private TableView<Titulo> tablaTitulos;
-    private TableView<Experiencia> tablaExp;
-    private TableView<Capacitacion> tablaCapacitaciones;   
-    private TableView<ProduccionAcademica> tablaProducciones; 
+	  private TextField txtNombres;
+	    private TextField txtApellidos;
+	    private TextField txtCorreo;
+	    private TextField txtCelular;
+	    private TextField txtConvencional;
+	    FileController fileController = new FileController();
+	    private TableView<Titulo> tablaTitulos;
+	    private TableView<Experiencia> tablaExp;
+	    private TableView<Capacitacion> tablaCapacitaciones;
+	    private TableView<ProduccionAcademica> tablaProducciones;
+
+	    // Método que inicializa las referencias despues de crear el formulario
+	    public void inicializarReferencias(CrearEditor crearEditor) {
+	    	 this.txtNombres = CrearEditor.getTxtNombres();
+	         this.txtApellidos = CrearEditor.getTxtApellidos();
+	         this.txtCorreo = CrearEditor.getTxtCorreo();
+	         this.txtCelular = CrearEditor.getTxtCelular();
+	         this.txtConvencional = CrearEditor.getTxtConvencional();
+	         
+	         // Inicializamos las tablas
+	         this.tablaTitulos = crearEditor.getTablaTitulos();
+	         this.tablaExp = crearEditor.getTablaExp();
+	         this.tablaCapacitaciones = crearEditor.getTablaCapacitaciones();
+	         this.tablaProducciones = crearEditor.getTablaProducciones();
+	    }
 
 	
 	public void guardarCambios(Docente d, App app, Stage stage) {

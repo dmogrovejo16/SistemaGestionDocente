@@ -9,6 +9,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import TareaFinCurso.GestionCurriculoDocente.App;
+import TareaFinCurso.GestionCurriculoDocente.Model.Docente;
+
 public class EventoEliminar {
 	
 	public Boolean EventoEliminar(String identificador) { //Metodo para eliminar docente a traves de lineas clave
@@ -20,6 +23,18 @@ public class EventoEliminar {
 		    boolean encontrado = false;
 		    boolean dentroDocente = false;
 
+		    ArrayList<Docente> docentes = App.getDocentes();
+		    
+		    
+		    boolean eliminado = false;
+		    for (int i = 0; i < docentes.size(); i++) {
+		        if (docentes.get(i).getCedula() == Integer.parseInt(identificador)) {
+		            docentes.remove(i);
+		            eliminado = true;
+		            break;
+		        }
+		    }
+		    
 		    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) { //Instanciamos un lector de archivos
 		        String linea;
 

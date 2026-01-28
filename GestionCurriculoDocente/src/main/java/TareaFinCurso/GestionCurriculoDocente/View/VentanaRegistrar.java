@@ -194,7 +194,7 @@ public class VentanaRegistrar{
 
 	        fondo.getChildren().add(contenido);
 
-	        Scene scene = new Scene(fondo, 1530, 800); //Definimos una escena con un tamaño fijo
+	        Scene scene = new Scene(fondo, 1530, 900); //Definimos una escena con un tamaño fijo
 	        
 	        scene.getStylesheets().add( //Añadimos hojas de estilo a la escena
 	                getClass().getResource("/TareaFinCurso/GestionCurriculoDocente/View/Css/app_registrar.css")
